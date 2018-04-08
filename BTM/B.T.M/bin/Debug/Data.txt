@@ -95,3 +95,351 @@ ShellExperienceHost,11:02 AM,00:00:00
 Taskmgr,11:02 AM,00:00:00
 Steam,11:02 AM,00:00:00
 Discord,11:02 AM,00:00:00
+chrome,11:07 AM,00:00:14
+NVIDIA Share,11:07 AM,00:00:14
+ShellExperienceHost,11:07 AM,00:00:14
+Taskmgr,11:07 AM,00:00:13
+Steam,11:07 AM,00:00:13
+Discord,11:07 AM,00:00:13
+chrome,11:08 AM,00:00:06
+NVIDIA Share,11:08 AM,00:00:06
+ShellExperienceHost,11:08 AM,00:00:06
+Taskmgr,11:08 AM,00:00:06
+Steam,11:08 AM,00:00:06
+Discord,11:08 AM,00:00:06
+chrome,11:08 AM,00:00:05
+NVIDIA Share,11:08 AM,00:00:05
+ShellExperienceHost,11:08 AM,00:00:05
+Taskmgr,11:08 AM,00:00:05
+Steam,11:08 AM,00:00:05
+Discord,11:08 AM,00:00:05
+chrome,11:09 AM,00:00:13
+NVIDIA Share,11:09 AM,00:00:13
+ShellExperienceHost,11:09 AM,00:00:13
+Taskmgr,11:09 AM,00:00:13
+Steam,11:09 AM,00:00:12
+Discord,11:09 AM,00:00:12
+chrome,11:14 AM,00:00:06
+NVIDIA Share,11:14 AM,00:00:06
+ShellExperienceHost,11:14 AM,00:00:06
+Taskmgr,11:14 AM,00:00:06
+Steam,11:14 AM,00:00:05
+Discord,11:14 AM,00:00:05
+chrome,11:15 AM,00:00:29
+NVIDIA Share,11:15 AM,00:00:29
+ShellExperienceHost,11:15 AM,00:00:29
+Taskmgr,11:15 AM,00:00:28
+Steam,11:15 AM,00:00:28
+Discord,11:15 AM,00:00:28
+chrome,11:16 AM,00:00:02
+NVIDIA Share,11:16 AM,00:00:02
+ShellExperienceHost,11:16 AM,00:00:02
+Taskmgr,11:16 AM,00:00:02
+Steam,11:16 AM,00:00:02
+Discord,11:16 AM,00:00:02
+chrome,11:17 AM,00:00:09
+NVIDIA Share,11:17 AM,00:00:09
+ShellExperienceHost,11:17 AM,00:00:09
+Taskmgr,11:17 AM,00:00:08
+Steam,11:17 AM,00:00:08
+Discord,11:17 AM,00:00:08
+chrome,11:17 AM,00:00:04
+NVIDIA Share,11:17 AM,00:00:04
+ShellExperienceHost,11:17 AM,00:00:04
+Taskmgr,11:17 AM,00:00:04
+Steam,11:17 AM,00:00:04
+Discord,11:17 AM,00:00:04
+chrome,11:17 AM,00:00:08
+NVIDIA Share,11:17 AM,00:00:08
+ShellExperienceHost,11:17 AM,00:00:08
+Taskmgr,11:17 AM,00:00:08
+Steam,11:17 AM,00:00:08
+Discord,11:17 AM,00:00:07
+chrome,11:19 AM,00:00:21
+NVIDIA Share,11:19 AM,00:00:21
+ShellExperienceHost,11:19 AM,00:00:21
+Taskmgr,11:19 AM,00:00:21
+Steam,11:19 AM,00:00:20
+Discord,11:19 AM,00:00:20
+chrome,11:20 AM,00:00:04
+NVIDIA Share,11:20 AM,00:00:04
+ShellExperienceHost,11:20 AM,00:00:03
+Taskmgr,11:20 AM,00:00:03
+Steam,11:20 AM,00:00:03
+Discord,11:20 AM,00:00:03
+chrome,11:20 AM,00:00:08
+NVIDIA Share,11:20 AM,00:00:08
+ShellExperienceHost,11:20 AM,00:00:08
+Taskmgr,11:20 AM,00:00:07
+Steam,11:20 AM,00:00:07
+Discord,11:20 AM,00:00:07
+chrome,11:21 AM,00:00:02
+NVIDIA Share,11:21 AM,00:00:02
+ShellExperienceHost,11:21 AM,00:00:02
+Taskmgr,11:21 AM,00:00:02
+Steam,11:21 AM,00:00:02
+Discord,11:21 AM,00:00:02
+chrome,11:21 AM,00:00:04
+NVIDIA Share,11:21 AM,00:00:04
+ShellExperienceHost,11:21 AM,00:00:04
+Taskmgr,11:21 AM,00:00:04
+Steam,11:21 AM,00:00:03
+Discord,11:21 AM,00:00:03
+chrome,11:21 AM,00:00:03
+NVIDIA Share,11:21 AM,00:00:03
+ShellExperienceHost,11:21 AM,00:00:03
+Taskmgr,11:21 AM,00:00:03
+Steam,11:21 AM,00:00:03
+Discord,11:21 AM,00:00:03
+chrome,11:21 AM,00:00:02
+NVIDIA Share,11:21 AM,00:00:02
+ShellExperienceHost,11:21 AM,00:00:02
+Taskmgr,11:21 AM,00:00:02
+Steam,11:21 AM,00:00:02
+Discord,11:21 AM,00:00:01
+chrome,11:22 AM,00:00:07
+NVIDIA Share,11:22 AM,00:00:07
+ShellExperienceHost,11:22 AM,00:00:07
+Taskmgr,11:22 AM,00:00:07
+Steam,11:22 AM,00:00:07
+Discord,11:22 AM,00:00:07
+chrome,11:23 AM,00:00:06
+NVIDIA Share,11:23 AM,00:00:06
+ShellExperienceHost,11:23 AM,00:00:06
+Taskmgr,11:23 AM,00:00:06
+Steam,11:23 AM,00:00:06
+Discord,11:23 AM,00:00:05
+chrome,11:23 AM,00:00:17
+NVIDIA Share,11:23 AM,00:00:17
+ShellExperienceHost,11:23 AM,00:00:16
+Taskmgr,11:23 AM,00:00:16
+Steam,11:23 AM,00:00:16
+Discord,11:23 AM,00:00:16
+chrome,11:23 AM,00:00:05
+NVIDIA Share,11:23 AM,00:00:05
+ShellExperienceHost,11:23 AM,00:00:05
+Taskmgr,11:23 AM,00:00:05
+Steam,11:23 AM,00:00:04
+Discord,11:23 AM,00:00:04
+chrome,11:25 AM,00:00:08
+NVIDIA Share,11:25 AM,00:00:08
+ShellExperienceHost,11:25 AM,00:00:08
+Taskmgr,11:25 AM,00:00:08
+Steam,11:25 AM,00:00:08
+Discord,11:25 AM,00:00:08
+chrome,11:25 AM,00:00:10
+NVIDIA Share,11:25 AM,00:00:10
+ShellExperienceHost,11:25 AM,00:00:10
+Taskmgr,11:25 AM,00:00:10
+Steam,11:25 AM,00:00:10
+Discord,11:25 AM,00:00:10
+chrome,11:26 AM,00:00:03
+NVIDIA Share,11:26 AM,00:00:03
+ShellExperienceHost,11:26 AM,00:00:03
+Taskmgr,11:26 AM,00:00:03
+Steam,11:26 AM,00:00:03
+Discord,11:26 AM,00:00:03
+chrome,11:26 AM,00:00:23
+NVIDIA Share,11:26 AM,00:00:23
+ShellExperienceHost,11:26 AM,00:00:23
+Taskmgr,11:26 AM,00:00:23
+Steam,11:26 AM,00:00:23
+Discord,11:26 AM,00:00:23
+chrome,11:27 AM,00:00:07
+NVIDIA Share,11:27 AM,00:00:07
+ShellExperienceHost,11:27 AM,00:00:06
+Taskmgr,11:27 AM,00:00:06
+Steam,11:27 AM,00:00:06
+Discord,11:27 AM,00:00:06
+chrome,11:27 AM,00:00:01
+NVIDIA Share,11:27 AM,00:00:01
+ShellExperienceHost,11:27 AM,00:00:01
+Taskmgr,11:27 AM,00:00:01
+Steam,11:27 AM,00:00:01
+Discord,11:27 AM,00:00:01
+chrome,11:27 AM,00:00:08
+NVIDIA Share,11:27 AM,00:00:08
+ShellExperienceHost,11:27 AM,00:00:08
+Taskmgr,11:27 AM,00:00:08
+Steam,11:27 AM,00:00:08
+Discord,11:27 AM,00:00:08
+chrome,11:28 AM,00:00:28
+NVIDIA Share,11:28 AM,00:00:27
+ShellExperienceHost,11:28 AM,00:00:27
+Taskmgr,11:28 AM,00:00:27
+Steam,11:28 AM,00:00:27
+Discord,11:28 AM,00:00:27
+chrome,11:29 AM,00:00:07
+NVIDIA Share,11:29 AM,00:00:07
+ShellExperienceHost,11:29 AM,00:00:06
+Taskmgr,11:29 AM,00:00:06
+Steam,11:29 AM,00:00:06
+Discord,11:29 AM,00:00:06
+chrome,11:29 AM,00:00:05
+NVIDIA Share,11:29 AM,00:00:05
+ShellExperienceHost,11:29 AM,00:00:05
+Taskmgr,11:29 AM,00:00:05
+Steam,11:29 AM,00:00:05
+Discord,11:29 AM,00:00:05
+chrome,11:30 AM,00:00:06
+NVIDIA Share,11:30 AM,00:00:06
+ShellExperienceHost,11:30 AM,00:00:06
+Taskmgr,11:30 AM,00:00:06
+Steam,11:30 AM,00:00:06
+Discord,11:30 AM,00:00:06
+chrome,11:30 AM,00:00:02
+NVIDIA Share,11:30 AM,00:00:02
+ShellExperienceHost,11:30 AM,00:00:02
+Taskmgr,11:30 AM,00:00:02
+Steam,11:30 AM,00:00:02
+Discord,11:30 AM,00:00:02
+chrome,11:31 AM,00:00:06
+NVIDIA Share,11:31 AM,00:00:06
+ShellExperienceHost,11:31 AM,00:00:06
+Taskmgr,11:31 AM,00:00:06
+Steam,11:31 AM,00:00:06
+Discord,11:31 AM,00:00:06
+chrome,11:31 AM,00:00:04
+NVIDIA Share,11:31 AM,00:00:04
+ShellExperienceHost,11:31 AM,00:00:04
+Taskmgr,11:31 AM,00:00:04
+Steam,11:31 AM,00:00:04
+Discord,11:31 AM,00:00:04
+chrome,11:32 AM,00:01:16
+NVIDIA Share,11:32 AM,00:01:15
+ShellExperienceHost,11:32 AM,00:01:15
+Taskmgr,11:32 AM,00:01:15
+Steam,11:32 AM,00:01:15
+Discord,11:32 AM,00:01:15
+chrome,11:33 AM,00:00:04
+NVIDIA Share,11:33 AM,00:00:04
+ShellExperienceHost,11:33 AM,00:00:04
+Taskmgr,11:33 AM,00:00:04
+Steam,11:33 AM,00:00:04
+Discord,11:33 AM,00:00:04
+chrome,11:34 AM,00:00:06
+NVIDIA Share,11:34 AM,00:00:06
+ShellExperienceHost,11:34 AM,00:00:06
+Taskmgr,11:34 AM,00:00:06
+Steam,11:34 AM,00:00:05
+Discord,11:34 AM,00:00:05
+chrome,11:34 AM,00:00:10
+NVIDIA Share,11:34 AM,00:00:10
+ShellExperienceHost,11:34 AM,00:00:10
+Taskmgr,11:34 AM,00:00:10
+Steam,11:34 AM,00:00:10
+Discord,11:34 AM,00:00:10
+chrome,11:34 AM,00:00:02
+NVIDIA Share,11:34 AM,00:00:01
+ShellExperienceHost,11:34 AM,00:00:01
+Taskmgr,11:34 AM,00:00:01
+Steam,11:34 AM,00:00:01
+Discord,11:34 AM,00:00:01
+chrome,11:35 AM,00:00:02
+NVIDIA Share,11:35 AM,00:00:02
+ShellExperienceHost,11:35 AM,00:00:02
+Taskmgr,11:35 AM,00:00:02
+Steam,11:35 AM,00:00:02
+Discord,11:35 AM,00:00:01
+chrome,11:35 AM,00:00:02
+NVIDIA Share,11:35 AM,00:00:02
+ShellExperienceHost,11:35 AM,00:00:02
+Taskmgr,11:35 AM,00:00:02
+Steam,11:35 AM,00:00:02
+Discord,11:35 AM,00:00:02
+chrome,11:35 AM,00:00:03
+NVIDIA Share,11:35 AM,00:00:03
+ShellExperienceHost,11:35 AM,00:00:03
+Taskmgr,11:35 AM,00:00:03
+Steam,11:35 AM,00:00:03
+Discord,11:35 AM,00:00:03
+chrome,11:35 AM,00:00:12
+NVIDIA Share,11:35 AM,00:00:12
+ShellExperienceHost,11:35 AM,00:00:12
+Taskmgr,11:35 AM,00:00:12
+Steam,11:35 AM,00:00:12
+Discord,11:35 AM,00:00:12
+chrome,11:36 AM,00:00:02
+NVIDIA Share,11:36 AM,00:00:02
+ShellExperienceHost,11:36 AM,00:00:02
+Taskmgr,11:36 AM,00:00:01
+Steam,11:36 AM,00:00:01
+Discord,11:36 AM,00:00:01
+chrome,11:36 AM,00:00:02
+NVIDIA Share,11:36 AM,00:00:02
+ShellExperienceHost,11:36 AM,00:00:02
+Taskmgr,11:36 AM,00:00:02
+Steam,11:36 AM,00:00:02
+Discord,11:36 AM,00:00:02
+chrome,11:37 AM,00:00:21
+NVIDIA Share,11:37 AM,00:00:21
+ShellExperienceHost,11:37 AM,00:00:21
+Taskmgr,11:37 AM,00:00:20
+Steam,11:37 AM,00:00:20
+Discord,11:37 AM,00:00:20
+chrome,11:37 AM,00:00:02
+NVIDIA Share,11:37 AM,00:00:02
+ShellExperienceHost,11:37 AM,00:00:02
+Taskmgr,11:37 AM,00:00:02
+Steam,11:37 AM,00:00:02
+Discord,11:37 AM,00:00:02
+chrome,11:38 AM,00:00:01
+NVIDIA Share,11:38 AM,00:00:00
+ShellExperienceHost,11:38 AM,00:00:00
+Taskmgr,11:38 AM,00:00:00
+Steam,11:38 AM,00:00:00
+Discord,11:38 AM,00:00:00
+chrome,11:38 AM,00:00:03
+NVIDIA Share,11:38 AM,00:00:03
+ShellExperienceHost,11:38 AM,00:00:03
+Taskmgr,11:38 AM,00:00:03
+Steam,11:38 AM,00:00:03
+Discord,11:38 AM,00:00:03
+chrome,11:39 AM,00:00:04
+NVIDIA Share,11:39 AM,00:00:03
+ShellExperienceHost,11:39 AM,00:00:03
+Taskmgr,11:39 AM,00:00:03
+Steam,11:39 AM,00:00:03
+Discord,11:39 AM,00:00:03
+chrome,11:39 AM,00:00:04
+NVIDIA Share,11:39 AM,00:00:03
+ShellExperienceHost,11:39 AM,00:00:03
+Taskmgr,11:39 AM,00:00:03
+Steam,11:39 AM,00:00:03
+Discord,11:39 AM,00:00:03
+chrome,11:39 AM,00:00:01
+NVIDIA Share,11:39 AM,00:00:01
+ShellExperienceHost,11:39 AM,00:00:01
+Taskmgr,11:39 AM,00:00:01
+Steam,11:39 AM,00:00:01
+Discord,11:39 AM,00:00:00
+chrome,11:40 AM,00:00:03
+NVIDIA Share,11:40 AM,00:00:03
+ShellExperienceHost,11:40 AM,00:00:03
+Taskmgr,11:40 AM,00:00:03
+Steam,11:40 AM,00:00:03
+Discord,11:40 AM,00:00:03
+chrome,11:40 AM,00:00:02
+NVIDIA Share,11:40 AM,00:00:02
+ShellExperienceHost,11:40 AM,00:00:02
+Taskmgr,11:40 AM,00:00:01
+Steam,11:40 AM,00:00:01
+Discord,11:40 AM,00:00:01
+chrome,11:40 AM,00:00:11
+NVIDIA Share,11:40 AM,00:00:11
+ShellExperienceHost,11:40 AM,00:00:11
+Taskmgr,11:40 AM,00:00:11
+Steam,11:40 AM,00:00:10
+Discord,11:40 AM,00:00:10
+chrome,11:41 AM,00:00:03
+NVIDIA Share,11:41 AM,00:00:02
+ShellExperienceHost,11:41 AM,00:00:02
+Taskmgr,11:41 AM,00:00:02
+Steam,11:41 AM,00:00:02
+Discord,11:41 AM,00:00:02
+chrome,11:41 AM,00:00:15
+NVIDIA Share,11:41 AM,00:00:15
+ShellExperienceHost,11:41 AM,00:00:15
+Taskmgr,11:41 AM,00:00:15
+Steam,11:41 AM,00:00:15
+Discord,11:41 AM,00:00:15

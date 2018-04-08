@@ -20,6 +20,7 @@ namespace B.T.M
   public partial class BTM : MetroFramework.Forms.MetroForm
   {
     public string path = "Data.txt";
+    public string greenCheck = @"greenTick.png";
     public Process[] processes;
     public List<AppDeet> appList = new List<AppDeet>();
     public Timer timer;
@@ -108,36 +109,36 @@ namespace B.T.M
       int topMargin    = margin;
       int nameCount    = 1;
       int leftMargin   = margin + buttonHeight + 5;
-      int buttonLength = AppListPanel.Width - 50;
+      int buttonLength = AppListPanel.Width - buttonHeight * 2 - 4;
 
 
       /// Gets all processes and sets an image/button for each
       ///   also adds application to list to be tested for
       ///   currently running applications. 
+      ///   
+
       processes = Process.GetProcesses();
       foreach (Process p in processes)
       {
         if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv"))
         {
-          PictureBox icon = new PictureBox();
-          AppListPanel.Controls.Add(icon);
+          MetroButton onlineButton = new MetroButton();
+          MetroButton button       = new MetroButton();
+          PictureBox  icon         = new PictureBox();
+
           try
-          {
-            Icon appIcon = Icon.ExtractAssociatedIcon(p.MainModule.FileName);
+          { Icon appIcon = Icon.ExtractAssociatedIcon(p.MainModule.FileName);
             icon.Image = appIcon.ToBitmap();
           }
           catch
-          {
+          {/**/}
 
-          }
-          icon.Size          = new Size(buttonHeight, buttonHeight);
-          icon.Left          = margin;
-          icon.Top           = topMargin;
-          MetroButton button = new MetroButton();
-          AppListPanel.Controls.Add(button);
+          icon.Size = new Size(buttonHeight, buttonHeight);
+          icon.Left = margin;
+          icon.Top  = topMargin;
 
-          button.Size = new Size(buttonLength - buttonHeight, buttonHeight);
-          //button.Click += this.button_Click;
+
+          button.Size       = new Size(buttonLength - buttonHeight, buttonHeight);
           button.TextAlign  = ContentAlignment.MiddleLeft;
           button.Name       = "button" + nameCount;
           button.Text       = p.ProcessName;
@@ -145,18 +146,28 @@ namespace B.T.M
           button.Theme      = MetroThemeStyle.Dark;
           button.Left       = leftMargin;
           button.Top        = topMargin;
-          nameCount++;
+          //button.Click += this.button_Click;
 
-          MetroTile onlineButton = new MetroTile();
-          AppListPanel.Controls.Add(onlineButton);
+          onlineButton.UseCustomBackColor = true;
+          onlineButton.UseCustomForeColor = true;
+
           onlineButton.BackColor = MetroColors.Green;
           onlineButton.TextAlign = ContentAlignment.MiddleCenter;
-          onlineButton.Size      = new Size(buttonHeight, buttonHeight);
+          onlineButton.Style     = MetroColorStyle.Teal;
+          onlineButton.Theme     = MetroThemeStyle.Dark;
+          onlineButton.Image     = Image.FromFile(greenCheck);
+          onlineButton.Size      = new Size(buttonHeight + 20, buttonHeight);
           onlineButton.Text      = "Online";
+          onlineButton.ForeColor = Color.Black;
           onlineButton.Left      = buttonLength + 12;
           onlineButton.Top       = topMargin;
 
           topMargin += buttonHeight + 4;
+
+          AppListPanel.Controls.Add(onlineButton);
+          AppListPanel.Controls.Add(button);
+          AppListPanel.Controls.Add(icon);
+          nameCount++;
         }
       }
     }
