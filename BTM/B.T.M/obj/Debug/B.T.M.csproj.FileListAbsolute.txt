@@ -11,3 +11,16 @@ C:\Users\Voxel\Documents\Visual Studio 2017\Projects\BTM\B.T.M\obj\Debug\B.T.M.c
 C:\Users\Voxel\Documents\Visual Studio 2017\Projects\BTM\B.T.M\obj\Debug\B.T.M.exe
 C:\Users\Voxel\Documents\Visual Studio 2017\Projects\BTM\B.T.M\obj\Debug\B.T.M.pdb
 C:\Users\Voxel\Documents\Visual Studio 2017\Projects\BTM\B.T.M\obj\Debug\B.T.M.BTM.resources
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\bin\Debug\B.T.M.exe.config
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\bin\Debug\B.T.M.exe
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\bin\Debug\B.T.M.pdb
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\bin\Debug\MetroFramework.Design.dll
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\bin\Debug\MetroFramework.dll
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.csprojResolveAssemblyReference.cache
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.BTM.resources
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.Properties.Resources.resources
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.csproj.GenerateResource.Cache
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.csproj.CoreCompileInputs.cache
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.exe
+C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.pdb

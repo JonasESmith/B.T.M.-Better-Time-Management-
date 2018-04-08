@@ -8,13 +8,13 @@ namespace B.T.M
 {
   public class AppDeet
   {
-    string name;
-    string timeToggle = "";
+    string name, startTime;
+    DateTime timeOne, timeTwo;
 
     public AppDeet(string name)
     {
       this.name = name;
-      toggleTime(true, "");
+      toggleTime(true);
     }
 
     public string Name
@@ -29,26 +29,28 @@ namespace B.T.M
       }
     }
 
-    public string toggleTime(bool toggle, string startTime)
+    public string toggleTime(bool toggle)
     {
-      timeToggle = "";
       if(toggle)
       {
-        timeToggle = "START:" + DateTime.Now.ToShortTimeString() + ",";
+        timeOne = DateTime.Now;
+        startTime = DateTime.Now.ToShortTimeString();
       }
       else
       {
-        timeToggle = startTime + "END:" + DateTime.Now.ToShortTimeString();
+        timeTwo = DateTime.Now;
       }
 
-      return timeToggle;
+      TimeSpan ts = (timeTwo - timeOne);
+
+      return ts.ToString(@"hh\:mm\:ss");
     }
 
     public string Time
     {
       get
       {
-        return timeToggle;
+        return startTime;
       }
     }
   }

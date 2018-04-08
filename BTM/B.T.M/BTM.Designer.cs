@@ -54,7 +54,7 @@
       this.AppListPanel.HorizontalScrollbarSize = 10;
       this.AppListPanel.Location = new System.Drawing.Point(23, 63);
       this.AppListPanel.Name = "AppListPanel";
-      this.AppListPanel.Size = new System.Drawing.Size(283, 258);
+      this.AppListPanel.Size = new System.Drawing.Size(289, 258);
       this.AppListPanel.TabIndex = 0;
       this.AppListPanel.VerticalScrollbar = true;
       this.AppListPanel.VerticalScrollbarBarColor = true;
@@ -74,9 +74,6 @@
       this.reloadApplicationsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
       this.reloadApplicationsToolStripMenuItem.Text = "Reload applications";
       this.reloadApplicationsToolStripMenuItem.Click += new System.EventHandler(this.reloadApplicationsToolStripMenuItem_Click);
-      // 
-      // myBackGroundWorker
-      // 
       // 
       // BTM
       // 

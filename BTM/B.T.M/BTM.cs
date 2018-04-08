@@ -60,7 +60,7 @@ namespace B.T.M
           {
             if (appList[j].Name == listOne[i])
             {
-              appList[j].toggleTime(false, appList[j].Time);
+              appList[j].toggleTime(false);
               AppendReport(appList[j]);
               appList.RemoveAt(j);
               LoadAppList();
@@ -80,47 +80,6 @@ namespace B.T.M
         }
       }
     }
-
-    //private void myBackGroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-    //{
-    //  List<string> currentAppList = new List<string>();
-    //  List<string> nameList = new List<string>();
-
-    //  currentAppList = RunningApps();
-
-    //  for(int i = 0; i < appList.Count; i++)
-    //  {
-    //    nameList.Add(appList[i].Name);
-    //  }
-
-    //  // End execution time of Applist Items and Remove. 
-    //  var listOne = nameList.Except(currentAppList).ToList();
-    //  if(listOne.Count > 0)
-    //  {
-    //    for(int i = 0; i < listOne.Count; i++)
-    //    {
-    //      for (int j = 0; j < appList.Count; j++)
-    //      {
-    //        if(appList[j].Name == listOne[i])
-    //        {
-    //          appList[j].toggleTime(false, appList[j].Time);
-    //          AppendReport(appList[j]);
-    //          appList.RemoveAt(j);
-    //        }
-    //      }
-    //    }
-    //  }
-
-    //  // Add new elements to AppList
-    //  var listTwo = currentAppList.Except(nameList).ToList();
-    //  if (listTwo.Count > 0)
-    //  {
-    //    for (int i = 0; i < listTwo.Count; i++)
-    //    {
-    //      appList.Add(new AppDeet(listTwo[i]));
-    //    }
-    //  }
-    //}
 
     public List<string> RunningApps()
     {
@@ -146,7 +105,6 @@ namespace B.T.M
       /// This sets the proper dementions for the buttons and 
       ///   their corresponding images. 
 
-      int index = 0;
       int buttonHeight = 32;
       int margin       = 5;
       int topMargin    = margin;
@@ -206,7 +164,7 @@ namespace B.T.M
     {
       StreamWriter sw = File.AppendText(path);
 
-      sw.WriteLine("{0},{1}",Data.Name, Data.Time);
+      sw.WriteLine("{0},{1}",Data.Name, Data.toggleTime(false));
 
       sw.Close();
     }
@@ -215,7 +173,7 @@ namespace B.T.M
     {
       for(int i = 0; i < appList.Count; i++)
       {
-        appList[i].toggleTime(false, appList[i].Time);
+        appList[i].toggleTime(false);
         AppendReport(appList[i]);
       }
     }
