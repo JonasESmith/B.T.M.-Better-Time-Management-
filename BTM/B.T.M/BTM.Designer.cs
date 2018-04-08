@@ -48,13 +48,14 @@
       // 
       this.AppListPanel.AutoScroll = true;
       this.AppListPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.AppListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.AppListPanel.HorizontalScrollbar = true;
       this.AppListPanel.HorizontalScrollbarBarColor = true;
       this.AppListPanel.HorizontalScrollbarHighlightOnWheel = false;
       this.AppListPanel.HorizontalScrollbarSize = 10;
-      this.AppListPanel.Location = new System.Drawing.Point(23, 63);
+      this.AppListPanel.Location = new System.Drawing.Point(20, 60);
       this.AppListPanel.Name = "AppListPanel";
-      this.AppListPanel.Size = new System.Drawing.Size(289, 258);
+      this.AppListPanel.Size = new System.Drawing.Size(306, 260);
       this.AppListPanel.TabIndex = 0;
       this.AppListPanel.VerticalScrollbar = true;
       this.AppListPanel.VerticalScrollbarBarColor = true;
@@ -80,7 +81,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoScroll = true;
-      this.ClientSize = new System.Drawing.Size(582, 344);
+      this.ClientSize = new System.Drawing.Size(346, 340);
       this.ContextMenuStrip = this.myContextMenu;
       this.Controls.Add(this.AppListPanel);
       this.Name = "BTM";

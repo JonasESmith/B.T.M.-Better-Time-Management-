@@ -28,7 +28,6 @@ namespace B.T.M
     {
       InitializeComponent();
       this.StyleManager = myStyleManager;
-      LoadAppList();
 
       timer = new Timer();
       timer.Interval = 1000;
@@ -104,13 +103,12 @@ namespace B.T.M
 
       /// This sets the proper dementions for the buttons and 
       ///   their corresponding images. 
-
       int buttonHeight = 32;
       int margin       = 5;
       int topMargin    = margin;
       int nameCount    = 1;
       int leftMargin   = margin + buttonHeight + 5;
-      int buttonLength = AppListPanel.Width - 17;
+      int buttonLength = AppListPanel.Width - 50;
 
 
       /// Gets all processes and sets an image/button for each
@@ -132,24 +130,32 @@ namespace B.T.M
           {
 
           }
-          icon.Size = new Size(buttonHeight, buttonHeight);
-          icon.Left = margin;
-          icon.Top = topMargin;
-
-          string name = p.ProcessName;
+          icon.Size          = new Size(buttonHeight, buttonHeight);
+          icon.Left          = margin;
+          icon.Top           = topMargin;
           MetroButton button = new MetroButton();
           AppListPanel.Controls.Add(button);
 
           button.Size = new Size(buttonLength - buttonHeight, buttonHeight);
           //button.Click += this.button_Click;
-          button.Name = "button" + nameCount;
-          button.TextAlign = ContentAlignment.MiddleLeft;
-          button.Text = name;
-          button.Style = MetroColorStyle.Teal;
-          button.Theme = MetroThemeStyle.Dark;
-          button.Left = leftMargin;
-          button.Top = topMargin;
+          button.TextAlign  = ContentAlignment.MiddleLeft;
+          button.Name       = "button" + nameCount;
+          button.Text       = p.ProcessName;
+          button.Style      = MetroColorStyle.Teal;
+          button.Theme      = MetroThemeStyle.Dark;
+          button.Left       = leftMargin;
+          button.Top        = topMargin;
           nameCount++;
+
+          MetroTile onlineButton = new MetroTile();
+          AppListPanel.Controls.Add(onlineButton);
+          onlineButton.BackColor = MetroColors.Green;
+          onlineButton.TextAlign = ContentAlignment.MiddleCenter;
+          onlineButton.Size      = new Size(buttonHeight, buttonHeight);
+          onlineButton.Text      = "Online";
+          onlineButton.Left      = buttonLength + 12;
+          onlineButton.Top       = topMargin;
+
           topMargin += buttonHeight + 4;
         }
       }
@@ -164,7 +170,7 @@ namespace B.T.M
     {
       StreamWriter sw = File.AppendText(path);
 
-      sw.WriteLine("{0},{1}",Data.Name, Data.toggleTime(false));
+      sw.WriteLine("{0},{1},{2}",Data.Name, Data.Time, Data.toggleTime(false));
 
       sw.Close();
     }
