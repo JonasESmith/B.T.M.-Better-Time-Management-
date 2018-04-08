@@ -443,3 +443,27 @@ ShellExperienceHost,11:41 AM,00:00:15
 Taskmgr,11:41 AM,00:00:15
 Steam,11:41 AM,00:00:15
 Discord,11:41 AM,00:00:15
+chrome,11:42 AM,00:00:22
+NVIDIA Share,11:42 AM,00:00:22
+ShellExperienceHost,11:42 AM,00:00:22
+Taskmgr,11:42 AM,00:00:22
+Steam,11:42 AM,00:00:22
+Discord,11:42 AM,00:00:22
+chrome,11:43 AM,00:00:03
+NVIDIA Share,11:43 AM,00:00:03
+ShellExperienceHost,11:43 AM,00:00:03
+Taskmgr,11:43 AM,00:00:03
+Steam,11:43 AM,00:00:02
+Discord,11:43 AM,00:00:02
+chrome,11:43 AM,00:00:02
+NVIDIA Share,11:43 AM,00:00:02
+ShellExperienceHost,11:43 AM,00:00:02
+Taskmgr,11:43 AM,00:00:01
+Steam,11:43 AM,00:00:01
+Discord,11:43 AM,00:00:01
+chrome,11:45 AM,00:00:04
+NVIDIA Share,11:45 AM,00:00:04
+ShellExperienceHost,11:45 AM,00:00:04
+Taskmgr,11:45 AM,00:00:04
+Steam,11:45 AM,00:00:04
+Discord,11:45 AM,00:00:04
