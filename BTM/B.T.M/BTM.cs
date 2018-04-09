@@ -19,7 +19,7 @@ namespace B.T.M
 {
   public partial class BTM : MetroFramework.Forms.MetroForm
   {
-    public string path = "Data.txt";
+    public string path;
     public string greenCheck = @"greenTick.png";
     public Process[] processes;
     public List<AppDeet> appList = new List<AppDeet>();
@@ -29,11 +29,22 @@ namespace B.T.M
     {
       InitializeComponent();
       this.StyleManager = myStyleManager;
+      path = CreatePath();
+
 
       timer = new Timer();
       timer.Interval = 1000;
       timer.Enabled = true;
       timer.Tick += new EventHandler(timer1_Tick);
+    }
+
+    public string CreatePath()
+    {
+      string path = "";
+
+      path = DateTime.Now.ToShortDateString().Replace("/", "_");
+
+      return path;
     }
 
     private void timer1_Tick(object sender, EventArgs e)
@@ -155,7 +166,6 @@ namespace B.T.M
           onlineButton.TextAlign = ContentAlignment.MiddleCenter;
           onlineButton.Style     = MetroColorStyle.Teal;
           onlineButton.Theme     = MetroThemeStyle.Dark;
-          onlineButton.Image     = Image.FromFile(greenCheck);
           onlineButton.Size      = new Size(buttonHeight + 20, buttonHeight);
           onlineButton.Text      = "Online";
           onlineButton.ForeColor = Color.Black;

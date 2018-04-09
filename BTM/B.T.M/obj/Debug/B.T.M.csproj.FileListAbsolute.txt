@@ -24,3 +24,16 @@ C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.csproj.GenerateR
 C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.csproj.CoreCompileInputs.cache
 C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.exe
 C:\Users\Voxel\Desktop\Projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.pdb
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\bin\Debug\B.T.M.exe.config
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\bin\Debug\B.T.M.exe
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\bin\Debug\B.T.M.pdb
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\bin\Debug\MetroFramework.Design.dll
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\bin\Debug\MetroFramework.dll
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.csprojResolveAssemblyReference.cache
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.BTM.resources
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.Properties.Resources.resources
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.csproj.GenerateResource.Cache
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.csproj.CoreCompileInputs.cache
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.exe
+C:\Users\smithjon\Desktop\projects\B.T.M\BTM\B.T.M\obj\Debug\B.T.M.pdb

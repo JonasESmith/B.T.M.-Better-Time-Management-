@@ -148,7 +148,6 @@
 
     private MetroFramework.Components.MetroStyleManager myStyleManager;
     private MetroFramework.Controls.MetroPanel AppListPanel;
-    private MetroFramework.Controls.MetroScrollBar metroScrollBar1;
     private MetroFramework.Controls.MetroContextMenu myContextMenu;
     private System.Windows.Forms.ToolStripMenuItem reloadApplicationsToolStripMenuItem;
     private System.ComponentModel.BackgroundWorker myBackGroundWorker;
