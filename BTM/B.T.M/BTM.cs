@@ -14,6 +14,7 @@ using MetroFramework;
 using System;
 using System.Linq;
 using System.IO;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace B.T.M
 {
@@ -23,7 +24,7 @@ namespace B.T.M
     public string greenCheck = @"greenTick.png";
     public Process[] processes;
     public List<AppDeet> appList = new List<AppDeet>();
-    public Timer timer;
+    public Timer AppTimer, GraphTimer;
 
     public BTM()
     {
@@ -31,11 +32,22 @@ namespace B.T.M
       this.StyleManager = myStyleManager;
       path = CreatePath();
 
+      AppListUpdate();
+      ChartUpdate();
+      StartTimers();
+    }
 
-      timer = new Timer();
-      timer.Interval = 1000;
-      timer.Enabled = true;
-      timer.Tick += new EventHandler(timer1_Tick);
+    public void StartTimers()
+    {
+      AppTimer = new Timer();
+      AppTimer.Interval = 1000;
+      AppTimer.Enabled = true;
+      AppTimer.Tick += new EventHandler(timer1_Tick);
+
+      GraphTimer = new Timer();
+      GraphTimer.Enabled = true;
+      GraphTimer.Interval = 60000;
+      GraphTimer.Tick += new EventHandler(timer1_Tick);
     }
 
     public string CreatePath()
@@ -51,6 +63,27 @@ namespace B.T.M
     {
       //myBackGroundWorker.RunWorkerAsync();
 
+      AppListUpdate();
+      ChartUpdate();
+    }
+
+    public void ChartUpdate()
+    {
+      string[] XPointMember = new string[ChartData.Rows.Count];
+      int[] YPointMember = new int[ChartData.Rows.Count];
+
+      for (int i = 0; i < appHistory.count; i++)
+      {
+        
+      }
+
+      appChart.Series[0].Points.DataBindXY(XPointMember, YPointMember);
+      appChart.Series[0].ChartType = SeriesChartType.Renko;
+      //appChart.DataSource = 
+    }
+
+    public void AppListUpdate()
+    {
       List<string> currentAppList = new List<string>();
       List<string> nameList = new List<string>();
 
@@ -182,11 +215,6 @@ namespace B.T.M
       }
     }
 
-    private void reloadApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      LoadAppList();
-    }
-
     private void AppendReport(AppDeet Data)
     {
       StreamWriter sw = File.AppendText(path);
@@ -200,7 +228,13 @@ namespace B.T.M
     {
       for(int i = 0; i < appList.Count; i++)
       {
+
+        /// Need to change this area to store a userSetting that will properly save the total amount
+        /// that each application used, since the begining of time. Shouldnt be too hard. Just need
+        /// to add the time for the current application run time. to the time stored for the local 
+        /// variable. 
         appList[i].toggleTime(false);
+        /
         AppendReport(appList[i]);
       }
     }
