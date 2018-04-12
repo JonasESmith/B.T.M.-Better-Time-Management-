@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppHist.cs" />
     <Compile Include="AppDeet.cs" />
     <Compile Include="BTM.cs">
       <SubType>Form</SubType>

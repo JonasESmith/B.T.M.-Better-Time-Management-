@@ -20,11 +20,13 @@ namespace B.T.M
 {
   public partial class BTM : MetroFramework.Forms.MetroForm
   {
-    public string path;
-    public string greenCheck = @"greenTick.png";
-    public Process[] processes;
-    public List<AppDeet> appList = new List<AppDeet>();
-    public Timer AppTimer, GraphTimer;
+    public string        path;
+    public Process[]     processes;
+
+    public List<AppDeet> appList    = new List<AppDeet>();
+    public List<AppHist> appHistory = new List<AppHist>();
+
+    public Timer         AppTimer, GraphTimer;
 
     public BTM()
     {
@@ -32,9 +34,30 @@ namespace B.T.M
       this.StyleManager = myStyleManager;
       path = CreatePath();
 
+      LoadAppHistory();
       AppListUpdate();
-      ChartUpdate();
+      //ChartUpdate();
       StartTimers();
+    }
+
+    public void LoadAppHistory()
+    {
+      /// Properties.Settings.Default.settingAppHistory = "0";
+      /// Properties.Settings.Default.Save();
+
+      string appHist = Properties.Settings.Default.settingAppHistory;
+
+      var words = appHist.Split(',');
+
+      int appCount = Convert.ToInt32(words[0]);
+
+      int j = 0;
+      for (int i = 1; i <= appCount; i++)
+      {
+        j *= 2;
+        appHistory.Add( new AppHist(words[1 + j], words[2 + j]));
+        j = i;
+      }
     }
 
     public void StartTimers()
@@ -64,22 +87,76 @@ namespace B.T.M
       //myBackGroundWorker.RunWorkerAsync();
 
       AppListUpdate();
-      ChartUpdate();
+      //ChartUpdate();
     }
 
-    public void ChartUpdate()
-    {
-      string[] XPointMember = new string[ChartData.Rows.Count];
-      int[] YPointMember = new int[ChartData.Rows.Count];
+    //public void ChartUpdate()
+    //{
+    //  string[] XPointMember = new string[ChartData.Count];
+    //  int[] YPointMember = new int[ChartData.Count];
 
-      for (int i = 0; i < appHistory.count; i++)
-      {
+    //  for (int i = 0; i < appHistory.count; i++)
+    //  {
         
+    //  }
+
+    //  appChart.Series[0].Points.DataBindXY(XPointMember, YPointMember);
+    //  appChart.Series[0].ChartType = SeriesChartType.Renko;
+    //  //appChart.DataSource = 
+    //}
+
+    public List<string> RunningApps()
+    {
+      List<string> applicationList = new List<string>();
+
+      processes = Process.GetProcesses();
+      foreach (Process p in processes)
+      {
+        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv"))
+        {
+          applicationList.Add(p.ProcessName);
+        }
+      }
+      return applicationList;
+    }
+
+    private void BTM_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      string runTime = "";
+      string saveSettings = "";
+
+      for (int i = 0; i < appList.Count; i++)
+      {
+        /// Need to change this area to store a userSetting that will properly save the total amount
+        /// that each application used, since the begining of time. Shouldnt be too hard. Just need
+        /// to add the time for the current application run time. to the time stored for the local 
+        /// variable. 
+
+        runTime = appList[i].toggleTime(false);
+
+        var item = appHistory.FirstOrDefault(o => o.Name == appList[i].Name);
+
+        if (appHistory.Contains(item))
+        {
+          int index = (appHistory.FindIndex(x => x.Name.Contains(appList[i].Name)));
+
+          appHistory[index].AddTime(runTime);
+        }
+        else
+        {
+          appHistory.Add(new AppHist(appList[i].Name, runTime));
+          saveSettings += (appList[i].Name + "," + runTime);
+        }
       }
 
-      appChart.Series[0].Points.DataBindXY(XPointMember, YPointMember);
-      appChart.Series[0].ChartType = SeriesChartType.Renko;
-      //appChart.DataSource = 
+      saveSettings = appHistory.Count.ToString() + ",";
+      for (int i = 0; i < appHistory.Count; i++)
+      {
+        saveSettings += appHistory[i].Name + "," + appHistory[i].TotalTime + ",";
+      }
+
+      Properties.Settings.Default.settingAppHistory = saveSettings;
+      Properties.Settings.Default.Save();
     }
 
     public void AppListUpdate()
@@ -105,7 +182,6 @@ namespace B.T.M
             if (appList[j].Name == listOne[i])
             {
               appList[j].toggleTime(false);
-              AppendReport(appList[j]);
               appList.RemoveAt(j);
               LoadAppList();
             }
@@ -123,22 +199,6 @@ namespace B.T.M
           LoadAppList();
         }
       }
-    }
-
-    public List<string> RunningApps()
-    {
-      List<string> applicationList = new List<string>();
-
-      processes = Process.GetProcesses();
-      foreach (Process p in processes)
-      {
-        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv"))
-        {
-          applicationList.Add(p.ProcessName);
-        }
-      }
-
-      return applicationList;
     }
 
     public void LoadAppList()
@@ -212,30 +272,6 @@ namespace B.T.M
           AppListPanel.Controls.Add(icon);
           nameCount++;
         }
-      }
-    }
-
-    private void AppendReport(AppDeet Data)
-    {
-      StreamWriter sw = File.AppendText(path);
-
-      sw.WriteLine("{0},{1},{2}",Data.Name, Data.Time, Data.toggleTime(false));
-
-      sw.Close();
-    }
-
-    private void BTM_FormClosing(object sender, FormClosingEventArgs e)
-    {
-      for(int i = 0; i < appList.Count; i++)
-      {
-
-        /// Need to change this area to store a userSetting that will properly save the total amount
-        /// that each application used, since the begining of time. Shouldnt be too hard. Just need
-        /// to add the time for the current application run time. to the time stored for the local 
-        /// variable. 
-        appList[i].toggleTime(false);
-        /
-        AppendReport(appList[i]);
       }
     }
   }

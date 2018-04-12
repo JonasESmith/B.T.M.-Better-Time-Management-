@@ -8,8 +8,14 @@ namespace B.T.M
 {
   public class AppDeet
   {
-    string name, startTime;
+    string name, startTime, totalTime;
     DateTime timeOne, timeTwo;
+
+    public AppDeet(string name, string time)
+    {
+      this.name = name;
+      this.totalTime = time;
+    }
 
     public AppDeet(string name)
     {
@@ -20,6 +26,18 @@ namespace B.T.M
     public string Name
     {
      get
+      {
+        return name;
+      }
+      set
+      {
+        this.name = value;
+      }
+    }
+
+    public string TotalTime
+    {
+      get
       {
         return name;
       }
