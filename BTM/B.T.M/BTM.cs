@@ -20,7 +20,6 @@ namespace B.T.M
 {
   public partial class BTM : MetroFramework.Forms.MetroForm
   {
-    public string        path;
     public Process[]     processes;
 
     public List<AppDeet> appList    = new List<AppDeet>();
@@ -32,18 +31,38 @@ namespace B.T.M
     {
       InitializeComponent();
       this.StyleManager = myStyleManager;
-      path = CreatePath();
+      LoadChartThemes();
+
 
       LoadAppHistory();
       AppListUpdate();
-      //ChartUpdate();
+      ChartUpdate();
       StartTimers();
+    }
+
+    public void LoadChartThemes()
+    {
+      appChart.BackColor = Color.FromArgb(17, 17, 17);
+
+      appChart.Legends[0].BackColor   = Color.FromArgb(17, 17, 17);
+      appChart.Legends[0].ForeColor   = Color.Gray;
+      //appChart.Legends[0].BorderColor = Color.Gray;
+
+      appChart.ChartAreas[0].AxisX.LineColor            = Color.Gray;
+      appChart.ChartAreas[0].AxisX.MajorGrid.LineColor  = Color.Gray;
+      appChart.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.Gray;
+
+      appChart.ChartAreas[0].AxisY.LineColor            = Color.Gray;
+      appChart.ChartAreas[0].AxisY.MajorGrid.LineColor  = Color.Gray;
+      appChart.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.Gray;
+
+
     }
 
     public void LoadAppHistory()
     {
-      /// Properties.Settings.Default.settingAppHistory = "0";
-      /// Properties.Settings.Default.Save();
+       /// Properties.Settings.Default.settingAppHistory = "0";
+       /// Properties.Settings.Default.Save();
 
       string appHist = Properties.Settings.Default.settingAppHistory;
 
@@ -70,40 +89,50 @@ namespace B.T.M
       GraphTimer = new Timer();
       GraphTimer.Enabled = true;
       GraphTimer.Interval = 60000;
-      GraphTimer.Tick += new EventHandler(timer1_Tick);
+      GraphTimer.Tick += new EventHandler(timer2_tick);
     }
 
-    public string CreatePath()
+    private void timer2_tick(object sender, EventArgs e)
     {
-      string path = "";
-
-      path = DateTime.Now.ToShortDateString().Replace("/", "_");
-
-      return path;
+      ChartUpdate();
     }
 
     private void timer1_Tick(object sender, EventArgs e)
     {
-      //myBackGroundWorker.RunWorkerAsync();
-
       AppListUpdate();
-      //ChartUpdate();
     }
 
-    //public void ChartUpdate()
-    //{
-    //  string[] XPointMember = new string[ChartData.Count];
-    //  int[] YPointMember = new int[ChartData.Count];
+    /// <summary>
+    ///  This does updates the Chart element 
+    ///  https://stackoverflow.com/questions/34835183/bar-graphs-in-c-sharp
+    ///  above is a good source for updating the elements of the chart.
+    /// </summary>
+    public void ChartUpdate()
+    {
+      SortAppHistory();
 
-    //  for (int i = 0; i < appHistory.count; i++)
-    //  {
-        
-    //  }
+      appChart.Series.Clear();
+      
+      for(int i = 0; i < appHistory.Count; i++)
+      {
+        var dynamicSeries = appChart.Series.Add(appHistory[i].Name);
 
-    //  appChart.Series[0].Points.DataBindXY(XPointMember, YPointMember);
-    //  appChart.Series[0].ChartType = SeriesChartType.Renko;
-    //  //appChart.DataSource = 
-    //}
+        dynamicSeries.Points.AddXY("App", appHistory[i].Time);
+        appChart.Series[appHistory[i].Name]["PixelPointWidth"] = "100";
+      }
+    }
+
+    public void SortAppHistory()
+    {
+      List<AppHist> SortedList = appHistory.OrderBy(o => o.TotalTime).ToList();
+      SortedList.Reverse();
+
+      appHistory.Clear();
+      for(int i = 0; i < SortedList.Count; i++)
+      {
+        appHistory.Add(new AppHist(SortedList[i].Name, SortedList[i].TotalTime));
+      }
+    }
 
     public List<string> RunningApps()
     {
@@ -112,7 +141,8 @@ namespace B.T.M
       processes = Process.GetProcesses();
       foreach (Process p in processes)
       {
-        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv"))
+        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv") && 
+           (p.ProcessName != "ShellExperienceHost") && (p.ProcessName != "NVIDIA Share"))
         {
           applicationList.Add(p.ProcessName);
         }
@@ -224,7 +254,8 @@ namespace B.T.M
       processes = Process.GetProcesses();
       foreach (Process p in processes)
       {
-        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv"))
+        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv") &&
+           (p.ProcessName != "ShellExperienceHost") && (p.ProcessName != "NVIDIA Share"))
         {
           MetroButton onlineButton = new MetroButton();
           MetroButton button       = new MetroButton();
@@ -250,6 +281,8 @@ namespace B.T.M
           button.Theme      = MetroThemeStyle.Dark;
           button.Left       = leftMargin;
           button.Top        = topMargin;
+          button.TabIndex   = 0;
+          button.TabStop    = false;
           //button.Click += this.button_Click;
 
           onlineButton.UseCustomBackColor = true;
@@ -264,6 +297,8 @@ namespace B.T.M
           onlineButton.ForeColor = Color.Black;
           onlineButton.Left      = buttonLength + 12;
           onlineButton.Top       = topMargin;
+          onlineButton.TabIndex  = 0;
+          onlineButton.TabStop   = false;
 
           topMargin += buttonHeight + 4;
 

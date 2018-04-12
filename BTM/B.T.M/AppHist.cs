@@ -58,5 +58,21 @@ namespace B.T.M
         return totalTime;
       }
     }
+
+    public string Time
+    {
+      get
+      {
+        int hours, minutes, seconds;
+
+        var words = totalTime.Split(':');
+        hours = Convert.ToInt32(words[0]);
+        minutes = Convert.ToInt32(words[1]);
+        seconds = Convert.ToInt32(words[2]);
+
+        TimeSpan timeSpan = new TimeSpan(hours, minutes, seconds);
+        return timeSpan.TotalHours.ToString();
+      }
+    }
   }
 }
