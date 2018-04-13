@@ -56,8 +56,9 @@ namespace B.T.M
       appChart.ChartAreas[0].AxisY.MajorGrid.LineColor  = Color.Gray;
       appChart.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.Gray;
 
-      appChart.ChartAreas[0].AxisX.Enabled = AxisEnabled.False;
+      //appChart.ChartAreas[0].AxisX.Enabled = AxisEnabled.False;
       appChart.ChartAreas[0].AxisX.Interval = 1;
+      appChart.ChartAreas[0].AxisX.RoundAxisValues();
 
     }
 
@@ -114,33 +115,76 @@ namespace B.T.M
       UpdateSeriesData();
       SortAppHistory();
 
-      foreach (var series in appChart.Series)
+      foreach (var seri in appChart.Series)
       {
-        series.Points.Clear();
+        seri.Points.Clear();
       }
 
       appChart.Series.Clear();
 
+      Series series = new Series()
+      {
+        Name = "series1",
+        IsVisibleInLegend = false,
+        ChartType = SeriesChartType.Bar
+      };
+
+      appChart.Series.Add(series);
+
+      Random rnd = new Random();
+
       for(int i = 0; i < appHistory.Count; i++)
       {
-        var dynamicSeries = appChart.Series.Add(appHistory[i].Name);
+        DataPoint points = new DataPoint(0, appHistory[i].Time);
+        points.AxisLabel = appHistory[i].Name;
+        points.Label = Math.Round(Convert.ToDouble(appHistory[i].Time), 2).ToString("n2");
 
-        appChart.Series[i].ChartType = SeriesChartType.Bar;
-        dynamicSeries.SmartLabelStyle.Enabled = true;
-        dynamicSeries.Points.AddXY("App", Math.Round(Convert.ToDouble(appHistory[i].Time), 2));
-        appChart.Series[appHistory[i].Name]["PixelPointWidth"] = "200";
+
+        if (i % 2 == 0)
+        {
+          points.Color = MetroColors.Teal;
+          points.LabelBackColor = MetroColors.Teal;
+          points.LabelBorderColor = MetroColors.Teal;
+        }
+        else
+        {
+          points.LabelBackColor = Color.Gray;
+          points.LabelBorderColor = Color.Gray;
+          points.Color = Color.Gray;
+        }
+
+        series.Points.Add(points);
+
+        #region old chart area
+        /// https://www.youtube.com/watch?v=H_7fZ5gTl98
+        /// above is a useful method of adding points to my graph.
+
+        //var dynamicSeries = appChart.Series.Add(appHistory[i].Name);
+        //dynamicSeries.SmartLabelStyle.Enabled = true;
+        //dynamicSeries.AxisLabel = appHistory[i].Name;
+
+        //appChart.Series[i].ChartType = SeriesChartType.Bar;
+
+        //appChart.ChartAreas[0].AxisY.Title = "Application run-time(hours)";
+        //appChart.ChartAreas[0].AxisY.TitleForeColor = Color.Gray;
+
+        //dynamicSeries.Points.AddXY(appHistory[i].Name, Math.Round(Convert.ToDouble(appHistory[i].Time), 2));
+
+        ////appChart.Series[appHistory[i].Name].Label = appHistory[i].Name;
+        ////appChart.Series[appHistory[i].Name].Font = new Font("Arial", 10, FontStyle.Bold);
+        ////appChart.Series[appHistory[i].Name].LabelForeColor = Color.Black; 
+        //appChart.Series[appHistory[i].Name]["PixelPointWidth"] = "200";
+
+
+
         /// Add stroke to text property. 
-        appChart.Series[appHistory[i].Name].Label = appHistory[i].Name;
-        appChart.Series[appHistory[i].Name].Font = new Font("Arial", 10, FontStyle.Bold);
-        appChart.Series[appHistory[i].Name].LabelForeColor = Color.Black; 
-        dynamicSeries.SetCustomProperty("BarLabelStyle", "Left");
-
+        /// https://stackoverflow.com/questions/19842722/setting-a-font-with-outline-color-in-c-sharp
+        #endregion
       }
     }
 
     public void UpdateSeriesData()
     {
-
       for (int i = 0; i < appList.Count; i++)
       {
 
@@ -325,7 +369,7 @@ namespace B.T.M
           onlineButton.Style     = MetroColorStyle.Teal;
           onlineButton.Theme     = MetroThemeStyle.Dark;
           onlineButton.Size      = new Size(buttonHeight + 20, buttonHeight);
-          onlineButton.Text      = "Online";
+          onlineButton.Text      = "";
           onlineButton.ForeColor = Color.Black;
           onlineButton.Left      = buttonLength + 12;
           onlineButton.Top       = topMargin;

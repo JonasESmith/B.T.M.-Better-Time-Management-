@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       this.myStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
       this.AppListPanel = new MetroFramework.Controls.MetroPanel();
       this.myContextMenu = new MetroFramework.Controls.MetroContextMenu(this.components);
@@ -119,7 +119,7 @@
       this.statusLabel.Name = "statusLabel";
       this.statusLabel.Size = new System.Drawing.Size(55, 22);
       this.statusLabel.TabIndex = 3;
-      this.statusLabel.Text = "status";
+      this.statusLabel.Text = "track";
       this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // allPanel
@@ -152,9 +152,9 @@
       // 
       this.appChart.BackColor = System.Drawing.Color.Black;
       this.appChart.BorderlineColor = System.Drawing.Color.Black;
-      chartArea1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-      chartArea1.Name = "ChartArea1";
-      this.appChart.ChartAreas.Add(chartArea1);
+      chartArea2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+      chartArea2.Name = "ChartArea1";
+      this.appChart.ChartAreas.Add(chartArea2);
       this.appChart.Dock = System.Windows.Forms.DockStyle.Fill;
       this.appChart.Location = new System.Drawing.Point(0, 0);
       this.appChart.Name = "appChart";

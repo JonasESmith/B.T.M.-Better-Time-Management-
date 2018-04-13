@@ -8,7 +8,7 @@ namespace B.T.M
 {
   public class AppHist
   {
-    string name, totalTime;
+    string name, totalTime, alias;
 
     public AppHist(string name, string time)
     {
@@ -28,10 +28,17 @@ namespace B.T.M
       }
     }
 
+    public string Alias
+    {
+      get
+      {
+        return alias;
+      }
+    }
+
     public void AddTime(string time)
     {
       int hours = 0, minutes = 0, seconds = 0;
-      string total = "";
       TimeSpan addedTime, totTime;
 
       var words = time.Split(':');
