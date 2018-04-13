@@ -4,228 +4,37 @@
 /// Purpose    : Fun project to test my use of UI's and my ability to track
 ///              data with system applications
 
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Collections.Generic;
 using MetroFramework.Controls;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Reflection;
 using System.Drawing;
 using MetroFramework;
 using System.Linq;
-using System.IO;
 using System;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace B.T.M
 {
   public partial class BTM : MetroFramework.Forms.MetroForm
   {
+    public Timer         AppTimer, 
+                         GraphTimer;
     public Process[]     processes;
-
     public List<AppDeet> appList    = new List<AppDeet>();
     public List<AppHist> appHistory = new List<AppHist>();
 
-    public Timer         AppTimer, GraphTimer;
-
-    public BTM()
-    {
+    /// <methods>
+    ///   FormLoading/Closing Methods
+    /// </methods>
+    public BTM() {
       InitializeComponent();
       this.StyleManager = myStyleManager;
-      LoadChartThemes();
+      LoadChartAreas();
 
-
-      LoadAppHistory();
-      AppListUpdate();
-      ChartUpdate();
-      StartTimers();
+      LoadAppHistory();  UpdateAppList();
+      UpdateChart();     StartTimers();
     }
-
-    public void LoadChartThemes()
-    {
-      appChart.BackColor = Color.FromArgb(17, 17, 17);
-
-      //appChart.Legends[0].BackColor   = Color.FromArgb(17, 17, 17);
-      //appChart.Legends[0].ForeColor   = Color.Gray;
-      //appChart.Legends[0].BorderColor = Color.Gray;
-
-      appChart.ChartAreas[0].AxisX.LineColor            = Color.Gray;
-      appChart.ChartAreas[0].AxisX.MajorGrid.LineColor  = Color.Gray;
-      appChart.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.Gray;
-
-      appChart.ChartAreas[0].AxisY.LineColor            = Color.Gray;
-      appChart.ChartAreas[0].AxisY.MajorGrid.LineColor  = Color.Gray;
-      appChart.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.Gray;
-
-      //appChart.ChartAreas[0].AxisX.Enabled = AxisEnabled.False;
-      appChart.ChartAreas[0].AxisX.Interval = 1;
-      appChart.ChartAreas[0].AxisX.RoundAxisValues();
-
-    }
-
-    public void LoadAppHistory()
-    {
-       /// Properties.Settings.Default.settingAppHistory = "0";
-       /// Properties.Settings.Default.Save();
-
-      string appHist = Properties.Settings.Default.settingAppHistory;
-
-      var words = appHist.Split(',');
-
-      int appCount = Convert.ToInt32(words[0]);
-
-      int j = 0;
-      for (int i = 1; i <= appCount; i++)
-      {
-        j *= 2;
-        appHistory.Add( new AppHist(words[1 + j], words[2 + j]));
-        j = i;
-      }
-    }
-
-    public void StartTimers()
-    {
-      AppTimer = new Timer();
-      AppTimer.Interval = 1000;
-      AppTimer.Enabled = true;
-      AppTimer.Tick += new EventHandler(timer1_Tick);
-
-      GraphTimer = new Timer();
-      GraphTimer.Enabled = true;
-      GraphTimer.Interval = 15000;
-      GraphTimer.Tick += new EventHandler(timer2_tick);
-    }
-
-    private void timer2_tick(object sender, EventArgs e)
-    {
-      ChartUpdate();
-    }
-
-    private void timer1_Tick(object sender, EventArgs e)
-    {
-      AppListUpdate();
-    }
-
-    /// <summary>
-    ///  This does updates the Chart element 
-    ///  https://stackoverflow.com/questions/34835183/bar-graphs-in-c-sharp
-    ///  above is a good source for updating the elements of the chart.
-    /// </summary>
-    public void ChartUpdate()
-    {
-      UpdateSeriesData();
-      SortAppHistory();
-
-      foreach (var seri in appChart.Series)
-      {
-        seri.Points.Clear();
-      }
-
-      appChart.Series.Clear();
-
-      Series series = new Series()
-      {
-        Name = "series1",
-        IsVisibleInLegend = false,
-        ChartType = SeriesChartType.Bar
-      };
-
-      appChart.Series.Add(series);
-
-      Random rnd = new Random();
-
-      for(int i = 0; i < appHistory.Count; i++)
-      {
-        DataPoint points = new DataPoint(0, appHistory[i].Time);
-        points.AxisLabel = appHistory[i].Name;
-        points.Label = Math.Round(Convert.ToDouble(appHistory[i].Time), 2).ToString("n2");
-
-
-        if (i % 2 == 0)
-        {
-          points.Color = MetroColors.Teal;
-          points.LabelBackColor = MetroColors.Teal;
-          points.LabelBorderColor = MetroColors.Teal;
-        }
-        else
-        {
-          points.LabelBackColor = Color.Gray;
-          points.LabelBorderColor = Color.Gray;
-          points.Color = Color.Gray;
-        }
-
-        series.Points.Add(points);
-
-        #region old chart area
-        /// https://www.youtube.com/watch?v=H_7fZ5gTl98
-        /// above is a useful method of adding points to my graph.
-
-        //var dynamicSeries = appChart.Series.Add(appHistory[i].Name);
-        //dynamicSeries.SmartLabelStyle.Enabled = true;
-        //dynamicSeries.AxisLabel = appHistory[i].Name;
-
-        //appChart.Series[i].ChartType = SeriesChartType.Bar;
-
-        //appChart.ChartAreas[0].AxisY.Title = "Application run-time(hours)";
-        //appChart.ChartAreas[0].AxisY.TitleForeColor = Color.Gray;
-
-        //dynamicSeries.Points.AddXY(appHistory[i].Name, Math.Round(Convert.ToDouble(appHistory[i].Time), 2));
-
-        ////appChart.Series[appHistory[i].Name].Label = appHistory[i].Name;
-        ////appChart.Series[appHistory[i].Name].Font = new Font("Arial", 10, FontStyle.Bold);
-        ////appChart.Series[appHistory[i].Name].LabelForeColor = Color.Black; 
-        //appChart.Series[appHistory[i].Name]["PixelPointWidth"] = "200";
-
-
-
-        /// Add stroke to text property. 
-        /// https://stackoverflow.com/questions/19842722/setting-a-font-with-outline-color-in-c-sharp
-        #endregion
-      }
-    }
-
-    public void UpdateSeriesData()
-    {
-      for (int i = 0; i < appList.Count; i++)
-      {
-
-        var item = appHistory.FirstOrDefault(o => o.Name == appList[i].Name);
-
-        if (appHistory.Contains(item))
-        {
-          int index = (appHistory.FindIndex(x => x.Name.Contains(appList[i].Name)));
-          appHistory[index].AddTime("0:01:00");
-        }
-      }
-    }
-
-    public void SortAppHistory()
-    {
-      List<AppHist> SortedList = appHistory.OrderBy(o => o.TotalTime).ToList();
-      SortedList.Reverse();
-
-      appHistory.Clear();
-      for(int i = 0; i < SortedList.Count; i++)
-      {
-        appHistory.Add(new AppHist(SortedList[i].Name, SortedList[i].TotalTime));
-      }
-    }
-
-    public List<string> RunningApps()
-    {
-      List<string> applicationList = new List<string>();
-
-      processes = Process.GetProcesses();
-      foreach (Process p in processes)
-      {
-        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv") && 
-           (p.ProcessName != "ShellExperienceHost") && (p.ProcessName != "NVIDIA Share"))
-        {
-          applicationList.Add(p.ProcessName);
-        }
-      }
-      return applicationList;
-    }
-
     private void BTM_FormClosing(object sender, FormClosingEventArgs e)
     {
       string runTime = "";
@@ -265,7 +74,41 @@ namespace B.T.M
       Properties.Settings.Default.Save();
     }
 
-    public void AppListUpdate()
+    /// <methods>
+    ///   Application ListMethods
+    /// </methods>
+    public void SortAppHistory()
+    {
+      List<AppHist> SortedList = appHistory.OrderBy(o => o.TotalTime).ToList();
+      SortedList.Reverse();
+
+      appHistory.Clear();
+      for(int i = 0; i < SortedList.Count; i++)
+      {
+        appHistory.Add(new AppHist(SortedList[i].Name, SortedList[i].TotalTime));
+      }
+    }
+    public List<string> RunningApps()
+    {
+      List<string> applicationList = new List<string>();
+
+      processes = Process.GetProcesses();
+      foreach (Process p in processes)
+      {
+        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv") && 
+           (p.ProcessName != "ShellExperienceHost") && (p.ProcessName != "NVIDIA Share"))
+        {
+          applicationList.Add(p.ProcessName);
+        }
+      }
+      return applicationList;
+    }
+
+
+    /// <methods>
+    ///  Update Methods
+    /// </methods>
+    public void UpdateAppList()
     {
       List<string> currentAppList = new List<string>();
       List<string> nameList = new List<string>();
@@ -306,7 +149,85 @@ namespace B.T.M
         }
       }
     }
+    public void UpdateSeriesData()
+    {
+      for (int i = 0; i < appList.Count; i++)
+      {
 
+        var item = appHistory.FirstOrDefault(o => o.Name == appList[i].Name);
+
+        if (appHistory.Contains(item))
+        {
+          int index = (appHistory.FindIndex(x => x.Name.Contains(appList[i].Name)));
+          appHistory[index].AddTime("0:01:00");
+        }
+      }
+    }
+    public void UpdateChart() {
+      UpdateSeriesData(); SortAppHistory();
+
+      foreach (var seri in appChart.Series)
+      { seri.Points.Clear(); } appChart.Series.Clear();
+
+      Series series = new Series()
+      { Name = "series1",
+        IsVisibleInLegend = false,
+        ChartType = SeriesChartType.Bar };
+
+      appChart.Series.Add(series);
+
+      for(int i = 0; i < appHistory.Count; i++)
+      { DataPoint points = new DataPoint(0, appHistory[i].Time);
+        points.Label     = Math.Round(Convert.ToDouble(appHistory[i].Time), 2).ToString("n2");
+        points.AxisLabel = appHistory[i].Name;
+
+        if (i % 2 == 0){
+          points.Color            = MetroColors.Teal;
+          points.LabelBackColor   = MetroColors.Teal;
+          points.LabelBorderColor = MetroColors.Teal;
+        } else {
+          points.Color            = Color.Gray;
+          points.LabelBorderColor = Color.Gray;
+          points.LabelBackColor   = Color.Gray;
+        } series.Points.Add(points);
+      }
+    }
+
+    /// <methods>
+    ///  Load Methods
+    /// </methods>
+    public void LoadChartAreas() {
+      appChart.BackColor = Color.FromArgb(17, 17, 17);
+
+      appChart.ChartAreas[0].AxisX.LineColor            = Color.Gray;
+      appChart.ChartAreas[0].AxisX.Interval             = 1;
+      appChart.ChartAreas[0].AxisX.MajorGrid.LineColor  = Color.Gray;
+      appChart.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.Gray;
+      appChart.ChartAreas[0].AxisX.RoundAxisValues();
+
+      appChart.ChartAreas[0].AxisY.LineColor            = Color.Gray;
+      appChart.ChartAreas[0].AxisY.MajorGrid.LineColor  = Color.Gray;
+      appChart.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.Gray;
+    }
+    public void LoadAppHistory()
+    {
+       /// Properties.Settings.Default.settingAppHistory = "0";
+       /// Properties.Settings.Default.Save();
+
+      string appHist = Properties.Settings.Default.settingAppHistory;
+
+      var words = appHist.Split(',');
+
+      int appCount = Convert.ToInt32(words[0]);
+
+      int j = 0;
+      for (int i = 1; i <= appCount; i++)
+      {
+        j *= 2;
+        appHistory.Add( new AppHist(words[1 + j], words[2 + j]));
+        j = i;
+      }
+    }
     public void LoadAppList()
     {
       /// clears all previouse controls from the panel
@@ -384,6 +305,30 @@ namespace B.T.M
           nameCount++;
         }
       }
+    }
+
+    /// <methods>
+    ///  Timer Methods
+    /// </methods>
+    public void StartTimers()
+    {
+      AppTimer = new Timer();
+      AppTimer.Interval = 1000;
+      AppTimer.Enabled = true;
+      AppTimer.Tick += new EventHandler(timer1_Tick);
+
+      GraphTimer = new Timer();
+      GraphTimer.Enabled = true;
+      GraphTimer.Interval = 15000;
+      GraphTimer.Tick += new EventHandler(timer2_tick);
+    }
+    private void timer2_tick(object sender, EventArgs e)
+    {
+      UpdateChart();
+    }
+    private void timer1_Tick(object sender, EventArgs e)
+    {
+      UpdateAppList();
     }
   }
 }
