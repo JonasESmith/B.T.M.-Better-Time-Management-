@@ -24,9 +24,7 @@ namespace B.T.M
     public List<AppDeet> appList    = new List<AppDeet>();
     public List<AppHist> appHistory = new List<AppHist>();
 
-    /// <methods>
-    ///   FormLoading/Closing Methods
-    /// </methods>
+    /*<Methods> FormLoading/Closing Methods </Methods> */
     public BTM() {
       InitializeComponent();
       this.StyleManager = myStyleManager;
@@ -74,9 +72,8 @@ namespace B.T.M
       Properties.Settings.Default.Save();
     }
 
-    /// <methods>
-    ///   Application ListMethods
-    /// </methods>
+
+    /*<Methods> Application ListMethods </Methods> */
     public void SortAppHistory()
     {
       List<AppHist> SortedList = appHistory.OrderBy(o => o.TotalTime).ToList();
@@ -105,9 +102,7 @@ namespace B.T.M
     }
 
 
-    /// <methods>
-    ///  Update Methods
-    /// </methods>
+    /*<Methods> Update Methods </Methods> */
     public void UpdateAppList()
     {
       List<string> currentAppList = new List<string>();
@@ -193,9 +188,8 @@ namespace B.T.M
       }
     }
 
-    /// <methods>
-    ///  Load Methods
-    /// </methods>
+
+    /*<Methods> Load Methods </Methods> */
     public void LoadChartAreas() {
       appChart.BackColor = Color.FromArgb(17, 17, 17);
 
@@ -307,9 +301,8 @@ namespace B.T.M
       }
     }
 
-    /// <methods>
-    ///  Timer Methods
-    /// </methods>
+
+    /*<Methods> Timer Methods </Methods> */
     public void StartTimers()
     {
       AppTimer = new Timer();
