@@ -129,6 +129,7 @@ namespace B.T.M
         dynamicSeries.SmartLabelStyle.Enabled = true;
         dynamicSeries.Points.AddXY("App", Math.Round(Convert.ToDouble(appHistory[i].Time), 2));
         appChart.Series[appHistory[i].Name]["PixelPointWidth"] = "200";
+        /// Add stroke to text property. 
         appChart.Series[appHistory[i].Name].Label = appHistory[i].Name;
         appChart.Series[appHistory[i].Name].Font = new Font("Arial", 10, FontStyle.Bold);
         appChart.Series[appHistory[i].Name].LabelForeColor = Color.Black; 
