@@ -11,9 +11,9 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Drawing;
 using MetroFramework;
-using System;
 using System.Linq;
 using System.IO;
+using System;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace B.T.M
@@ -44,8 +44,8 @@ namespace B.T.M
     {
       appChart.BackColor = Color.FromArgb(17, 17, 17);
 
-      appChart.Legends[0].BackColor   = Color.FromArgb(17, 17, 17);
-      appChart.Legends[0].ForeColor   = Color.Gray;
+      //appChart.Legends[0].BackColor   = Color.FromArgb(17, 17, 17);
+      //appChart.Legends[0].ForeColor   = Color.Gray;
       //appChart.Legends[0].BorderColor = Color.Gray;
 
       appChart.ChartAreas[0].AxisX.LineColor            = Color.Gray;
@@ -56,6 +56,8 @@ namespace B.T.M
       appChart.ChartAreas[0].AxisY.MajorGrid.LineColor  = Color.Gray;
       appChart.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.Gray;
 
+      appChart.ChartAreas[0].AxisX.Enabled = AxisEnabled.False;
+      appChart.ChartAreas[0].AxisX.Interval = 1;
 
     }
 
@@ -88,7 +90,7 @@ namespace B.T.M
 
       GraphTimer = new Timer();
       GraphTimer.Enabled = true;
-      GraphTimer.Interval = 60000;
+      GraphTimer.Interval = 15000;
       GraphTimer.Tick += new EventHandler(timer2_tick);
     }
 
@@ -109,16 +111,45 @@ namespace B.T.M
     /// </summary>
     public void ChartUpdate()
     {
+      UpdateSeriesData();
       SortAppHistory();
 
+      foreach (var series in appChart.Series)
+      {
+        series.Points.Clear();
+      }
+
       appChart.Series.Clear();
-      
+
       for(int i = 0; i < appHistory.Count; i++)
       {
         var dynamicSeries = appChart.Series.Add(appHistory[i].Name);
 
-        dynamicSeries.Points.AddXY("App", appHistory[i].Time);
-        appChart.Series[appHistory[i].Name]["PixelPointWidth"] = "100";
+        appChart.Series[i].ChartType = SeriesChartType.Bar;
+        dynamicSeries.SmartLabelStyle.Enabled = true;
+        dynamicSeries.Points.AddXY("App", Math.Round(Convert.ToDouble(appHistory[i].Time), 2));
+        appChart.Series[appHistory[i].Name]["PixelPointWidth"] = "200";
+        appChart.Series[appHistory[i].Name].Label = appHistory[i].Name;
+        appChart.Series[appHistory[i].Name].Font = new Font("Arial", 10, FontStyle.Bold);
+        appChart.Series[appHistory[i].Name].LabelForeColor = Color.Black; 
+        dynamicSeries.SetCustomProperty("BarLabelStyle", "Left");
+
+      }
+    }
+
+    public void UpdateSeriesData()
+    {
+
+      for (int i = 0; i < appList.Count; i++)
+      {
+
+        var item = appHistory.FirstOrDefault(o => o.Name == appList[i].Name);
+
+        if (appHistory.Contains(item))
+        {
+          int index = (appHistory.FindIndex(x => x.Name.Contains(appList[i].Name)));
+          appHistory[index].AddTime("0:01:00");
+        }
       }
     }
 
