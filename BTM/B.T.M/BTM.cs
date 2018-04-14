@@ -25,10 +25,11 @@ namespace B.T.M
     public List<AppHist> appHistory = new List<AppHist>();
 
     /*<Methods> FormLoading/Closing Methods </Methods> */
+    #region Application Start / Close
     public BTM() {
       InitializeComponent();
       this.StyleManager = myStyleManager;
-      LoadChartAreas();
+      LoadChartAreaThemes();
 
       LoadAppHistory();  UpdateAppList();
       UpdateChart();     StartTimers();
@@ -53,7 +54,7 @@ namespace B.T.M
           //int index = (appHistory.FindIndex(x => x.Name.Contains(appList[i].Name)));
           //appHistory[index].AddTime(runTime);
         } else {
-          appHistory.Add(new AppHist(appList[i].Name, runTime, appList[i].Name, true));
+          appHistory.Add(new AppHist(appList[i].Name, runTime, appList[i].Name, true, appList[i].Path));
           saveSettings += (appList[i].Name + "," + runTime); }
       }
 
@@ -61,45 +62,31 @@ namespace B.T.M
       for (int i = 0; i < appHistory.Count; i++)
       {
         saveSettings += appHistory[i].Name   + "," + appHistory[i].TotalTime + "," 
-                     +  appHistory[i]._Alias + "," + appHistory[i].Track     + ",";
+                     +  appHistory[i]._Alias + "," + appHistory[i].Track     + ","
+                     +  appHistory[i]._Path  + ",";
       }
 
       Properties.Settings.Default.settingAppHistory = saveSettings;
       Properties.Settings.Default.Save();
     }
+    #endregion
 
 
-    /*<Methods> Application ListMethods </Methods> */
-    public void SortAppHistory()
-    {
+    /*<Methods> Update Methods </Methods> */
+    #region Update
+    public void SortAppHistory() {
+
       List<AppHist> SortedList = appHistory.OrderBy(o => o.TotalTime).ToList();
-      SortedList.Reverse();
 
       appHistory.Clear();
       for(int i = 0; i < SortedList.Count; i++)
       {
-        appHistory.Add(new AppHist(SortedList[i].Name, SortedList[i].TotalTime, SortedList[i]._Alias, SortedList[i].Track));
+        appHistory.Add(new AppHist(SortedList[i].Name,   SortedList[i].TotalTime,
+                                   SortedList[i]._Alias, SortedList[i].Track, 
+                                   SortedList[i]._Path));
       }
     }
 
-    public List<string> RunningApps()
-    {
-      List<string> applicationList = new List<string>();
-
-      processes = Process.GetProcesses();
-      foreach (Process p in processes)
-      {
-        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv") && 
-           (p.ProcessName != "ShellExperienceHost") && (p.ProcessName != "NVIDIA Share"))
-        {
-          applicationList.Add(p.ProcessName);
-        }
-      }
-      return applicationList;
-    }
-
-
-    /*<Methods> Update Methods </Methods> */
     public void UpdateAppButtons()
     {
       /// clears all previouse controls from the panel
@@ -119,19 +106,15 @@ namespace B.T.M
       ///   also adds application to list to be tested for
       ///   currently running applications. 
       ///   
-
-      processes = Process.GetProcesses();
-      foreach (Process p in processes)
+      for(int i = 0; i < appHistory.Count; i++)
       {
-        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv") &&
-           (p.ProcessName != "ShellExperienceHost") && (p.ProcessName != "NVIDIA Share"))
         {
           MetroButton onlineButton = new MetroButton();
           MetroButton button       = new MetroButton();
           PictureBox  icon         = new PictureBox();
 
           try
-          { Icon appIcon = Icon.ExtractAssociatedIcon(p.MainModule.FileName);
+          { Icon appIcon = Icon.ExtractAssociatedIcon(appHistory[i]._Path);
             icon.Image = appIcon.ToBitmap();
           }
           catch
@@ -145,25 +128,33 @@ namespace B.T.M
           button.Size       = new Size(buttonLength - buttonHeight, buttonHeight);
           button.TextAlign  = ContentAlignment.MiddleLeft;
           button.Name       = "button" + nameCount;
-          button.Text       = p.ProcessName;
+          button.Text       = appHistory[i]._Alias;
           button.Style      = MetroColorStyle.Teal;
           button.Theme      = MetroThemeStyle.Dark;
           button.Left       = leftMargin;
           button.Top        = topMargin;
           button.TabIndex   = 0;
           button.TabStop    = false;
-          //button.Click += this.button_Click;
+          button.Click     += this.button_Click;
 
           onlineButton.UseCustomBackColor = true;
           onlineButton.UseCustomForeColor = true;
 
-          onlineButton.BackColor = MetroColors.Teal;
+          if(appHistory[i].Track) {
+            onlineButton.BackColor = Color.FromArgb(45, 60, 90);
+            onlineButton.Text = "yes";
+            onlineButton.ForeColor = Color.DarkGray;
+          }
+          else{ // The same color as the other buttons.
+
+            onlineButton.BackColor = Color.FromArgb(35, 35, 35);
+            onlineButton.Text = "no";
+            onlineButton.ForeColor = Color.Gray;
+          }
+
           onlineButton.TextAlign = ContentAlignment.MiddleCenter;
-          onlineButton.Style     = MetroColorStyle.Teal;
           onlineButton.Theme     = MetroThemeStyle.Dark;
           onlineButton.Size      = new Size(buttonHeight + 20, buttonHeight);
-          onlineButton.Text      = "";
-          onlineButton.ForeColor = Color.Black;
           onlineButton.Left      = buttonLength + 12;
           onlineButton.Top       = topMargin;
           onlineButton.TabIndex  = 0;
@@ -181,10 +172,19 @@ namespace B.T.M
 
     public void UpdateAppList()
     {
+      List<string> tempList = new List<string>();
+      List<string> runningPaths = new List<string>();
       List<string> currentAppList = new List<string>();
       List<string> nameList = new List<string>();
 
-      currentAppList = RunningApps();
+      tempList = RunningApps();
+
+      for(int i = 0; i < tempList.Count; i++) {
+        var words = tempList[i].Split(',');
+
+        currentAppList.Add(words[0]);
+        runningPaths.Add(words[1]);
+      }
 
       for (int i = 0; i < appList.Count; i++)
       { nameList.Add(appList[i].Name); }
@@ -203,9 +203,24 @@ namespace B.T.M
       // Add new elements to AppList
       var listTwo = currentAppList.Except(nameList).ToList();
       if (listTwo.Count > 0) {
+        int index = 0;
         for (int i = 0; i < listTwo.Count; i++) {
-          appList.Add(new AppDeet(listTwo[i]));
+
+          for(int j = 0; j < currentAppList.Count; j++)
+          {
+            if(currentAppList[j].Contains(listTwo[i]))
+            {
+              index = j;
+              break;
+            }
+          }
+
+
+          appList.Add(new AppDeet(listTwo[i], runningPaths[index], 0));
           UpdateAppButtons();
+
+
+
         } }
 
       for (int i = 0; i < appHistory.Count; i++)
@@ -215,46 +230,46 @@ namespace B.T.M
       if (listThree.Count > 0){
         for (int i = 0; i < listThree.Count; i++){
 
-          appHistory.Add(new AppHist(listThree[i], "00:00:00", listThree[i], true));
+          appHistory.Add(new AppHist(listThree[i], "00:00:00", listThree[i], true, runningPaths[i]));
           UpdateAppButtons(); 
         } }
 
     }
 
     public void UpdateChart() {
-      UpdateSeriesData(); SortAppHistory();
+      UpdateSeriesData();
 
       foreach (var seri in appChart.Series)
-      { seri.Points.Clear(); } appChart.Series.Clear();
+      { seri.Points.Clear(); }
+
+      appChart.Series.Clear();
 
       Series series = new Series()
-      { Name = "series1",
-        IsVisibleInLegend = false,
-        ChartType = SeriesChartType.Bar };
+      { Name = "series1", IsVisibleInLegend = false, ChartType = SeriesChartType.Bar };
 
       appChart.Series.Add(series);
-      appChart.ChartAreas[0].AxisY.Title = "(hours)";
+      appChart.ChartAreas[0].AxisY.Title          = "(hours)";
       appChart.ChartAreas[0].AxisY.TitleForeColor = Color.Gray;
 
       for (int i = 0; i < appHistory.Count; i++) {
         if (appHistory[i].Track) {
-          DataPoint points = new DataPoint(0, appHistory[i].Time);
-          points.Label = (appHistory[i].TimeLabel);
-          points.AxisLabel = appHistory[i].Name;
+          DataPoint points          = new DataPoint(0, appHistory[i].Time);
+          points.AxisLabel          = appHistory[i].Name;
+          points.Label              = (appHistory[i].TimeLabel);
 
+          if (i % 2 == 0) {
+            points.Color            = Color.FromArgb(45, 60, 90);
+            points.LabelForeColor   = Color.Gray;
+            points.LabelBackColor   = Color.FromArgb(45, 60, 90);
+            points.LabelBorderColor = Color.FromArgb(45, 60, 90);
 
-          if (i % 2 == 0)
-          {
-            points.Color = MetroColors.Teal;
-            points.LabelBackColor = MetroColors.Teal;
-            points.LabelBorderColor = MetroColors.Teal;
-          }
-          else
-          {
-            points.Color = Color.DarkGray;
-            points.LabelBorderColor = Color.DarkGray;
-            points.LabelBackColor = Color.DarkGray;
-        } series.Points.Add(points); }
+          } else {
+            points.Color            = Color.FromArgb(60, 60, 90);
+            points.LabelForeColor   = Color.Gray;
+            points.LabelBackColor   = Color.FromArgb(60, 60, 90);
+            points.LabelBorderColor = Color.FromArgb(60, 60, 90);
+
+          } series.Points.Add(points); }
       }
     }
 
@@ -270,10 +285,29 @@ namespace B.T.M
         }}
     }
 
+    public List<string> RunningApps()
+    {
+      List<string> applicationList = new List<string>();
+
+      processes = Process.GetProcesses();
+      foreach (Process p in processes)
+      {
+        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv") && 
+           (p.ProcessName != "ShellExperienceHost") && (p.ProcessName != "NVIDIA Share"))
+        {
+          applicationList.Add(p.ProcessName + "," + p.MainModule.FileName);
+        }
+      }
+      return applicationList;
+    }
+    #endregion
 
 
     /*<Methods> Load Methods </Methods> */
-    public void LoadChartAreas() {
+    #region Load
+    public void LoadChartAreaThemes() {
+      
+
       appChart.BackColor = Color.FromArgb(17, 17, 17);
 
       appChart.ChartAreas[0].AxisX.LineColor            = Color.Gray;
@@ -285,6 +319,12 @@ namespace B.T.M
       appChart.ChartAreas[0].AxisY.LineColor            = Color.Gray;
       appChart.ChartAreas[0].AxisY.MajorGrid.LineColor  = Color.Gray;
       appChart.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.Gray;
+
+      appSaveBtn.BackColor = MetroColors.Green;
+      appSaveBtn.ForeColor = Color.Black;
+
+      appClosePanel.BackColor = Color.Gray;
+      appClosePanel.ForeColor = Color.Black;
     }
 
     public void LoadAppHistory()
@@ -301,14 +341,16 @@ namespace B.T.M
       int j = 0;
       for (int i = 1; i <= appCount; i++)
       {
-        j *= 4;
-        appHistory.Add( new AppHist(words[1 + j], words[2 + j], words[3 + j], Convert.ToBoolean(words[4 + j])));
+        j *= 5;
+        appHistory.Add( new AppHist(words[1 + j], words[2 + j], words[3 + j], Convert.ToBoolean(words[4 + j]), words[5 + j]));
         j = i;
       }
     }
+    #endregion
 
 
     /*<Methods> Timer Methods </Methods> */
+    #region Timers
     public void StartTimers()
     {
       AppTimer = new Timer();
@@ -323,13 +365,67 @@ namespace B.T.M
     }
 
     private void timer2_tick(object sender, EventArgs e)
-    {
-      UpdateChart();
-    }
+    { UpdateChart();
+      SortAppHistory(); }
 
     private void timer1_Tick(object sender, EventArgs e)
+    { UpdateAppList();
+      SortAppHistory(); }
+    #endregion
+
+
+    /*<Methods> Button Methods </Methods> */
+    #region Buttons
+    private void appClosePanel_Click(object sender, EventArgs e)
     {
-      UpdateAppList();
+      appSaveBtn.Enabled = false;
+      appDataPanel.Visible = false;
+      appDataPanel.Enabled = false;
     }
+
+    private void button_Click(object sender, EventArgs e)
+    {
+      MetroButton button = sender as MetroButton;
+
+      appSaveBtn.Enabled = true;
+      appDataPanel.Enabled = true;
+      appDataPanel.Visible = true;
+
+      int index = appHistory.FindIndex(a => a._Alias == button.Text);
+
+      if (appHistory[index].Track)
+      {
+        appTrackingCmb.SelectedIndex = 0;
+      }
+      else
+      {
+        appTrackingCmb.SelectedIndex = 1;
+      }
+
+      appSettingsBanner.Text  = appHistory[index]._Alias + " Settings";
+      appSettingsBanner.ForeColor = Color.White;
+      appAliasDisplay.Text = appHistory[index].Alias;
+      appLabelName.Text = appHistory[index].Name;
+
+      if (appHistory[index].Track)
+        appTrackingCmb.SelectedIndex = 0;
+      else
+        appTrackingCmb.SelectedIndex = 1;
+    }
+
+    private void appSaveBtn_Click(object sender, EventArgs e)
+    {
+      int index = appHistory.FindIndex(a => a.Name == appLabelName.Text);
+
+      if (appTrackingCmb.SelectedIndex == 0)
+        appHistory[index].Track = true;
+      else
+        appHistory[index].Track = false;
+
+      appHistory[index]._Alias = appAliasDisplay.Text;
+
+      UpdateAppButtons();
+    }
+    #endregion
   }
 }

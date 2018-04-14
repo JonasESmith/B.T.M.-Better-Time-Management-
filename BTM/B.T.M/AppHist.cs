@@ -8,15 +8,24 @@ namespace B.T.M
 {
   public class AppHist
   {
-    string name, totalTime, alias;
+    string name, totalTime, alias, path;
     bool trackStatus;
 
-    public AppHist(string name, string time, string alias, bool _track)
+    public AppHist(string _name, string _time, string _alias, bool _track, string _path)
     {
-      this.name = name;
-      this.totalTime = time;
-      this.alias = alias;
+      this.name = _name;
+      this.totalTime = _time;
+      this.alias = _alias;
       this.trackStatus = _track;
+      this.path = _path;
+    }
+
+    public string _Path
+    {
+      get
+      {
+        return path;
+      }
     }
 
     public string _Alias

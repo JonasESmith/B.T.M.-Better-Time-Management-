@@ -8,14 +8,29 @@ namespace B.T.M
 {
   public class AppDeet
   {
-    string name, startTime, totalTime;
+    string name, startTime, totalTime, path;
     DateTime timeOne, timeTwo;
+
+    public AppDeet(string name, string _path, int nothing)
+    {
+      this.name = name;
+      this.path = _path;
+    }
 
     public AppDeet(string name, string time)
     {
       this.name = name;
       this.totalTime = time;
     }
+
+    public string Path
+    {
+      get
+      {
+        return path;
+      }
+    }
+
 
     public AppDeet(string name)
     {
