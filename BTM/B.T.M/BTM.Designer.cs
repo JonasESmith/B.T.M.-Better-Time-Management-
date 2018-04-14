@@ -54,6 +54,7 @@
       this.panel1 = new System.Windows.Forms.Panel();
       this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
       this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
+      this.metroToggle1 = new MetroFramework.Controls.MetroToggle();
       ((System.ComponentModel.ISupportInitialize)(this.myStyleManager)).BeginInit();
       this.myContextMenu.SuspendLayout();
       this.allPanel.SuspendLayout();
@@ -82,7 +83,7 @@
       this.AppListPanel.HorizontalScrollbarSize = 10;
       this.AppListPanel.Location = new System.Drawing.Point(0, 0);
       this.AppListPanel.Name = "AppListPanel";
-      this.AppListPanel.Size = new System.Drawing.Size(314, 277);
+      this.AppListPanel.Size = new System.Drawing.Size(314, 303);
       this.AppListPanel.TabIndex = 0;
       this.AppListPanel.VerticalScrollbar = true;
       this.AppListPanel.VerticalScrollbarBarColor = true;
@@ -142,7 +143,7 @@
       this.allPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.allPanel.Location = new System.Drawing.Point(20, 60);
       this.allPanel.Name = "allPanel";
-      this.allPanel.Size = new System.Drawing.Size(660, 306);
+      this.allPanel.Size = new System.Drawing.Size(660, 332);
       this.allPanel.TabIndex = 4;
       // 
       // metroPanel4
@@ -155,7 +156,7 @@
       this.metroPanel4.HorizontalScrollbarSize = 10;
       this.metroPanel4.Location = new System.Drawing.Point(324, 0);
       this.metroPanel4.Name = "metroPanel4";
-      this.metroPanel4.Size = new System.Drawing.Size(336, 306);
+      this.metroPanel4.Size = new System.Drawing.Size(336, 332);
       this.metroPanel4.TabIndex = 6;
       this.metroPanel4.VerticalScrollbarBarColor = true;
       this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
@@ -164,6 +165,7 @@
       // appDataPanel
       // 
       this.appDataPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.appDataPanel.Controls.Add(this.metroToggle1);
       this.appDataPanel.Controls.Add(this.appLabelName);
       this.appDataPanel.Controls.Add(this.appSettingsBanner);
       this.appDataPanel.Controls.Add(this.appClosePanel);
@@ -175,7 +177,7 @@
       this.appDataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.appDataPanel.Location = new System.Drawing.Point(0, 0);
       this.appDataPanel.Name = "appDataPanel";
-      this.appDataPanel.Size = new System.Drawing.Size(336, 306);
+      this.appDataPanel.Size = new System.Drawing.Size(336, 332);
       this.appDataPanel.TabIndex = 2;
       this.appDataPanel.Visible = false;
       // 
@@ -296,7 +298,7 @@
       this.appChart.Dock = System.Windows.Forms.DockStyle.Fill;
       this.appChart.Location = new System.Drawing.Point(0, 0);
       this.appChart.Name = "appChart";
-      this.appChart.Size = new System.Drawing.Size(336, 306);
+      this.appChart.Size = new System.Drawing.Size(336, 332);
       this.appChart.TabIndex = 0;
       this.appChart.Text = "chart1";
       // 
@@ -308,7 +310,7 @@
       this.metroPanel3.HorizontalScrollbarSize = 10;
       this.metroPanel3.Location = new System.Drawing.Point(314, 0);
       this.metroPanel3.Name = "metroPanel3";
-      this.metroPanel3.Size = new System.Drawing.Size(10, 306);
+      this.metroPanel3.Size = new System.Drawing.Size(10, 332);
       this.metroPanel3.TabIndex = 1;
       this.metroPanel3.VerticalScrollbarBarColor = true;
       this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
@@ -321,7 +323,7 @@
       this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
       this.panel1.Location = new System.Drawing.Point(0, 0);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(314, 306);
+      this.panel1.Size = new System.Drawing.Size(314, 332);
       this.panel1.TabIndex = 4;
       // 
       // metroPanel1
@@ -333,7 +335,7 @@
       this.metroPanel1.HorizontalScrollbarSize = 10;
       this.metroPanel1.Location = new System.Drawing.Point(0, 29);
       this.metroPanel1.Name = "metroPanel1";
-      this.metroPanel1.Size = new System.Drawing.Size(314, 277);
+      this.metroPanel1.Size = new System.Drawing.Size(314, 303);
       this.metroPanel1.TabIndex = 6;
       this.metroPanel1.VerticalScrollbarBarColor = true;
       this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -356,17 +358,28 @@
       this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
       this.metroPanel2.VerticalScrollbarSize = 10;
       // 
+      // metroToggle1
+      // 
+      this.metroToggle1.AutoSize = true;
+      this.metroToggle1.Location = new System.Drawing.Point(158, 276);
+      this.metroToggle1.Name = "metroToggle1";
+      this.metroToggle1.Size = new System.Drawing.Size(80, 17);
+      this.metroToggle1.TabIndex = 10;
+      this.metroToggle1.Text = "Off";
+      this.metroToggle1.UseSelectable = true;
+      // 
       // BTM
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoScroll = true;
       this.AutoSize = true;
-      this.ClientSize = new System.Drawing.Size(700, 386);
+      this.ClientSize = new System.Drawing.Size(700, 412);
       this.ContextMenuStrip = this.myContextMenu;
       this.Controls.Add(this.allPanel);
       this.MaximizeBox = false;
-      this.MinimumSize = new System.Drawing.Size(700, 300);
+      this.MaximumSize = new System.Drawing.Size(700, 700);
+      this.MinimumSize = new System.Drawing.Size(700, 250);
       this.Name = "BTM";
       this.Text = "B.T.M.";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BTM_FormClosing);
@@ -410,6 +423,7 @@
     private MetroFramework.Controls.MetroButton appClosePanel;
     private MetroFramework.Controls.MetroLabel appSettingsBanner;
     private System.Windows.Forms.Label appLabelName;
+    private MetroFramework.Controls.MetroToggle metroToggle1;
   }
 }
 

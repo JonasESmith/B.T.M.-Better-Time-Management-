@@ -8,6 +8,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.Collections.Generic;
 using MetroFramework.Controls;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 using System.Diagnostics;
 using System.Drawing;
 using MetroFramework;
@@ -16,7 +17,7 @@ using System;
 
 namespace B.T.M
 {
-  public partial class BTM : MetroFramework.Forms.MetroForm
+  public partial class BTM : MetroForm
   {
     public Timer         AppTimer, 
                          GraphTimer;
@@ -106,6 +107,8 @@ namespace B.T.M
       ///   also adds application to list to be tested for
       ///   currently running applications. 
       ///   
+      appHistory.Reverse();
+
       for(int i = 0; i < appHistory.Count; i++)
       {
         {
@@ -118,7 +121,7 @@ namespace B.T.M
             icon.Image = appIcon.ToBitmap();
           }
           catch
-          {/**/}
+          {/* */}
 
           icon.Size = new Size(buttonHeight, buttonHeight);
           icon.Left = margin;
@@ -168,6 +171,7 @@ namespace B.T.M
           nameCount++;
         }
       }
+      appHistory.Reverse();
     }
 
     public void UpdateAppList()
@@ -215,11 +219,8 @@ namespace B.T.M
             }
           }
 
-
           appList.Add(new AppDeet(listTwo[i], runningPaths[index], 0));
           UpdateAppButtons();
-
-
 
         } }
 
@@ -290,18 +291,12 @@ namespace B.T.M
     }
 
     public List<string> RunningApps()
-    {
-      List<string> applicationList = new List<string>();
-
+    { List<string> applicationList = new List<string>();
       processes = Process.GetProcesses();
-      foreach (Process p in processes)
-      {
-        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv") && 
-           (p.ProcessName != "ShellExperienceHost") && (p.ProcessName != "NVIDIA Share"))
-        {
-          applicationList.Add(p.ProcessName + "," + p.MainModule.FileName);
-        }
-      }
+      foreach (Process p in processes) {
+        if (!String.IsNullOrEmpty(p.MainWindowTitle) && (p.ProcessName != "devenv")) {
+          try { applicationList.Add(p.ProcessName + "," + p.MainModule.FileName); }
+          catch { } } }
       return applicationList;
     }
     #endregion
@@ -429,6 +424,7 @@ namespace B.T.M
       appHistory[index]._Alias = appAliasDisplay.Text;
 
       UpdateAppButtons();
+      UpdateChart();
     }
     #endregion
   }
