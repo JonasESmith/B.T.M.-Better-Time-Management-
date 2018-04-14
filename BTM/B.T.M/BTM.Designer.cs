@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       this.myStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
       this.AppListPanel = new MetroFramework.Controls.MetroPanel();
       this.myContextMenu = new MetroFramework.Controls.MetroContextMenu(this.components);
@@ -303,9 +303,9 @@
       // 
       this.appChart.BackColor = System.Drawing.Color.Black;
       this.appChart.BorderlineColor = System.Drawing.Color.Black;
-      chartArea4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-      chartArea4.Name = "ChartArea1";
-      this.appChart.ChartAreas.Add(chartArea4);
+      chartArea9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+      chartArea9.Name = "ChartArea1";
+      this.appChart.ChartAreas.Add(chartArea9);
       this.appChart.Dock = System.Windows.Forms.DockStyle.Fill;
       this.appChart.Location = new System.Drawing.Point(0, 0);
       this.appChart.Name = "appChart";

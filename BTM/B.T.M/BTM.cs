@@ -132,40 +132,39 @@ namespace B.T.M
           icon.Top  = topMargin;
 
 
-          button.Size       = new Size(buttonLength - buttonHeight, buttonHeight);
-          button.TextAlign  = ContentAlignment.MiddleLeft;
-          button.Name       = "button" + nameCount;
-          button.Text       = appHistory[i]._Alias;
-          button.Style      = MetroColorStyle.Teal;
-          button.Theme      = MetroThemeStyle.Dark;
-          button.Left       = leftMargin;
-          button.Top        = topMargin;
-          button.TabIndex   = 0;
-          button.TabStop    = false;
-          button.Click     += this.button_Click;
+          button.Size         = new Size(buttonLength - buttonHeight, buttonHeight);
+          button.TextAlign    = ContentAlignment.MiddleLeft;
+          button.Name         = "button" + nameCount;
+          button.Text         = appHistory[i]._Alias;
+          button.Left         = leftMargin;
+          button.Top          = topMargin;
+          button.TabIndex     = 0;
+          button.TabStop      = false;
+          button.Click       += this.button_Click;
+          button.StyleManager = myStyleManager;
 
           onlineButton.UseCustomBackColor = true;
           onlineButton.UseCustomForeColor = true;
 
           if(appHistory[i].Track) {
             onlineButton.BackColor = Color.FromArgb(45, 60, 90);
-            onlineButton.Text = "yes";
+            onlineButton.Text      = "yes";
             onlineButton.ForeColor = Color.DarkGray;
           }
           else{ // The same color as the other buttons.
 
             onlineButton.BackColor = Color.FromArgb(35, 35, 35);
-            onlineButton.Text = "no";
+            onlineButton.Text      = "no";
             onlineButton.ForeColor = Color.Gray;
           }
 
-          onlineButton.TextAlign = ContentAlignment.MiddleCenter;
-          onlineButton.Theme     = MetroThemeStyle.Dark;
-          onlineButton.Size      = new Size(buttonHeight + 20, buttonHeight);
-          onlineButton.Left      = buttonLength + 12;
-          onlineButton.Top       = topMargin;
-          onlineButton.TabIndex  = 0;
-          onlineButton.TabStop   = false;
+          onlineButton.TextAlign    = ContentAlignment.MiddleCenter;
+          onlineButton.Size         = new Size(buttonHeight + 20, buttonHeight);
+          onlineButton.Left         = buttonLength + 12;
+          onlineButton.Top          = topMargin;
+          onlineButton.TabIndex     = 0;
+          onlineButton.TabStop      = false;
+          onlineButton.StyleManager = myStyleManager;
 
           topMargin += buttonHeight + 4;
 
