@@ -24,6 +24,7 @@ namespace B.T.M
     public Process[]     processes;
     public List<AppDeet> appList    = new List<AppDeet>();
     public List<AppHist> appHistory = new List<AppHist>();
+    public bool tracking;
 
     /*<Methods> FormLoading/Closing Methods </Methods> */
     #region Application Start / Close
@@ -31,6 +32,9 @@ namespace B.T.M
       InitializeComponent();
       this.StyleManager = myStyleManager;
       LoadChartAreaThemes();
+
+      trackToggle.CheckState = CheckState.Checked;
+      tracking = true;
 
       LoadAppHistory();  UpdateAppList();
       UpdateChart();     StartTimers();
@@ -364,12 +368,18 @@ namespace B.T.M
     }
 
     private void timer2_tick(object sender, EventArgs e)
-    { UpdateChart();
-      SortAppHistory(); }
+    { if (tracking) {
+        UpdateChart();
+        SortAppHistory();
+      }
+    }
 
     private void timer1_Tick(object sender, EventArgs e)
-    { UpdateAppList();
-      SortAppHistory(); }
+    { if (tracking) {
+        UpdateAppList();
+        SortAppHistory();
+      }
+    }
     #endregion
 
 
@@ -410,6 +420,14 @@ namespace B.T.M
         appTrackingCmb.SelectedIndex = 0;
       else
         appTrackingCmb.SelectedIndex = 1;
+    }
+
+    private void trackToggle_CheckedChanged(object sender, EventArgs e)
+    {
+      if (tracking)
+        tracking = false;
+      else
+        tracking = true;
     }
 
     private void appSaveBtn_Click(object sender, EventArgs e)

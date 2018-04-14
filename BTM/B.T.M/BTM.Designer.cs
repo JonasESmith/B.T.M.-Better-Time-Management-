@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       this.myStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
       this.AppListPanel = new MetroFramework.Controls.MetroPanel();
       this.myContextMenu = new MetroFramework.Controls.MetroContextMenu(this.components);
@@ -41,6 +41,7 @@
       this.allPanel = new System.Windows.Forms.Panel();
       this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
       this.appDataPanel = new System.Windows.Forms.Panel();
+      this.trackToggle = new MetroFramework.Controls.MetroToggle();
       this.appLabelName = new System.Windows.Forms.Label();
       this.appSettingsBanner = new MetroFramework.Controls.MetroLabel();
       this.appClosePanel = new MetroFramework.Controls.MetroButton();
@@ -54,7 +55,6 @@
       this.panel1 = new System.Windows.Forms.Panel();
       this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
       this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
-      this.metroToggle1 = new MetroFramework.Controls.MetroToggle();
       ((System.ComponentModel.ISupportInitialize)(this.myStyleManager)).BeginInit();
       this.myContextMenu.SuspendLayout();
       this.allPanel.SuspendLayout();
@@ -165,7 +165,6 @@
       // appDataPanel
       // 
       this.appDataPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.appDataPanel.Controls.Add(this.metroToggle1);
       this.appDataPanel.Controls.Add(this.appLabelName);
       this.appDataPanel.Controls.Add(this.appSettingsBanner);
       this.appDataPanel.Controls.Add(this.appClosePanel);
@@ -180,6 +179,17 @@
       this.appDataPanel.Size = new System.Drawing.Size(336, 332);
       this.appDataPanel.TabIndex = 2;
       this.appDataPanel.Visible = false;
+      // 
+      // trackToggle
+      // 
+      this.trackToggle.AutoSize = true;
+      this.trackToggle.Location = new System.Drawing.Point(254, 37);
+      this.trackToggle.Name = "trackToggle";
+      this.trackToggle.Size = new System.Drawing.Size(80, 17);
+      this.trackToggle.TabIndex = 10;
+      this.trackToggle.Text = "Off";
+      this.trackToggle.UseSelectable = true;
+      this.trackToggle.CheckedChanged += new System.EventHandler(this.trackToggle_CheckedChanged);
       // 
       // appLabelName
       // 
@@ -292,9 +302,9 @@
       // 
       this.appChart.BackColor = System.Drawing.Color.Black;
       this.appChart.BorderlineColor = System.Drawing.Color.Black;
-      chartArea1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-      chartArea1.Name = "ChartArea1";
-      this.appChart.ChartAreas.Add(chartArea1);
+      chartArea2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+      chartArea2.Name = "ChartArea1";
+      this.appChart.ChartAreas.Add(chartArea2);
       this.appChart.Dock = System.Windows.Forms.DockStyle.Fill;
       this.appChart.Location = new System.Drawing.Point(0, 0);
       this.appChart.Name = "appChart";
@@ -358,16 +368,6 @@
       this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
       this.metroPanel2.VerticalScrollbarSize = 10;
       // 
-      // metroToggle1
-      // 
-      this.metroToggle1.AutoSize = true;
-      this.metroToggle1.Location = new System.Drawing.Point(158, 276);
-      this.metroToggle1.Name = "metroToggle1";
-      this.metroToggle1.Size = new System.Drawing.Size(80, 17);
-      this.metroToggle1.TabIndex = 10;
-      this.metroToggle1.Text = "Off";
-      this.metroToggle1.UseSelectable = true;
-      // 
       // BTM
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -376,6 +376,7 @@
       this.AutoSize = true;
       this.ClientSize = new System.Drawing.Size(700, 412);
       this.ContextMenuStrip = this.myContextMenu;
+      this.Controls.Add(this.trackToggle);
       this.Controls.Add(this.allPanel);
       this.MaximizeBox = false;
       this.MaximumSize = new System.Drawing.Size(700, 700);
@@ -394,6 +395,7 @@
       this.metroPanel1.ResumeLayout(false);
       this.metroPanel2.ResumeLayout(false);
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -423,7 +425,7 @@
     private MetroFramework.Controls.MetroButton appClosePanel;
     private MetroFramework.Controls.MetroLabel appSettingsBanner;
     private System.Windows.Forms.Label appLabelName;
-    private MetroFramework.Controls.MetroToggle metroToggle1;
+    private MetroFramework.Controls.MetroToggle trackToggle;
   }
 }
 
