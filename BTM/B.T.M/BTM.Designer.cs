@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       this.myStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
       this.AppListPanel = new MetroFramework.Controls.MetroPanel();
       this.myContextMenu = new MetroFramework.Controls.MetroContextMenu(this.components);
@@ -183,11 +183,12 @@
       // trackToggle
       // 
       this.trackToggle.AutoSize = true;
-      this.trackToggle.Location = new System.Drawing.Point(254, 37);
+      this.trackToggle.Location = new System.Drawing.Point(171, 6);
       this.trackToggle.Name = "trackToggle";
       this.trackToggle.Size = new System.Drawing.Size(80, 17);
       this.trackToggle.TabIndex = 10;
       this.trackToggle.Text = "Off";
+      this.trackToggle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       this.trackToggle.UseSelectable = true;
       this.trackToggle.CheckedChanged += new System.EventHandler(this.trackToggle_CheckedChanged);
       // 
@@ -302,9 +303,9 @@
       // 
       this.appChart.BackColor = System.Drawing.Color.Black;
       this.appChart.BorderlineColor = System.Drawing.Color.Black;
-      chartArea2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-      chartArea2.Name = "ChartArea1";
-      this.appChart.ChartAreas.Add(chartArea2);
+      chartArea4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+      chartArea4.Name = "ChartArea1";
+      this.appChart.ChartAreas.Add(chartArea4);
       this.appChart.Dock = System.Windows.Forms.DockStyle.Fill;
       this.appChart.Location = new System.Drawing.Point(0, 0);
       this.appChart.Name = "appChart";
@@ -353,6 +354,7 @@
       // 
       // metroPanel2
       // 
+      this.metroPanel2.Controls.Add(this.trackToggle);
       this.metroPanel2.Controls.Add(this.processLabel);
       this.metroPanel2.Controls.Add(this.statusLabel);
       this.metroPanel2.Controls.Add(this.iconLabel);
@@ -376,7 +378,6 @@
       this.AutoSize = true;
       this.ClientSize = new System.Drawing.Size(700, 412);
       this.ContextMenuStrip = this.myContextMenu;
-      this.Controls.Add(this.trackToggle);
       this.Controls.Add(this.allPanel);
       this.MaximizeBox = false;
       this.MaximumSize = new System.Drawing.Size(700, 700);
@@ -394,8 +395,8 @@
       this.panel1.ResumeLayout(false);
       this.metroPanel1.ResumeLayout(false);
       this.metroPanel2.ResumeLayout(false);
+      this.metroPanel2.PerformLayout();
       this.ResumeLayout(false);
-      this.PerformLayout();
 
     }
 
