@@ -258,7 +258,7 @@ namespace B.T.M
       for (int i = 0; i < appHistory.Count; i++) {
         if (appHistory[i].Track) {
           DataPoint points          = new DataPoint(0, appHistory[i].Time);
-          points.AxisLabel          = appHistory[i].Name;
+          points.AxisLabel          = appHistory[i]._Alias;
           points.Label              = (appHistory[i].TimeLabel);
 
           if (i % 2 == 0) {
