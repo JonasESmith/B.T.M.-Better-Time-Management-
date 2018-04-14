@@ -228,9 +228,13 @@ namespace B.T.M
 
       var listThree = currentAppList.Except(nameList).ToList();
       if (listThree.Count > 0){
+        int index = 0;
         for (int i = 0; i < listThree.Count; i++){
 
-          appHistory.Add(new AppHist(listThree[i], "00:00:00", listThree[i], true, runningPaths[i]));
+          index = currentAppList.FindIndex(a => a == listThree[i]);
+
+
+          appHistory.Add(new AppHist(listThree[i], "00:00:00", listThree[i], true, runningPaths[index]));
           UpdateAppButtons(); 
         } }
 
