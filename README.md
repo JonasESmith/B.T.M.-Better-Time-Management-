@@ -3,7 +3,7 @@ Application to monitor Usage of Applications/Games running on your system.
 
 ### HomeScreen
 <p align="left">
-  <img src="pictures/btmMain.PNG" alt="icon">
+  <img src="pictures/btmMain.png" alt="icon">
 </p>
 
 ### AddAlarm
